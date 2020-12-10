@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface iUsuario {
     public List<Usuario> listarUsuarios();
+    
+    public void agregarUsuario(Usuario usuario);
 }

@@ -25,30 +25,34 @@
                 <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a th:href="@{/admin/oferta_educativa}" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
                 <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-primary text-white">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                    <!--Opción Conócenos-->
-                <a th:href="@{/templates/admconocenos.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/templates/admconocenos.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                    <!--Opción valores institucionales-->
-                <a th:href="@{/templates/adminvalores.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/templates/adminvalores.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                    <!--Opción Costos y Promociones-->
+                <!--Opción Costos y Promociones-->
                 <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
                 <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                    <!--Opción Directorio Institucional-->
-                <a th:href="@{/templates/admdirectorio.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/templates/admdirectorio.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
@@ -104,30 +108,17 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Ingrese los datos solicitados</h5>
-                                <form>
+                                <form th:action="@{/admin/usuarios/registrar}" th:object="${usuario}" method="POST">
                                     <!--Inicio del form solicitando datos-->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNombreUsuario">Nombre</label>
-                                            <input type="text" class="form-control" id="inputNombreUsuario">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputApellidoUsuario">Apellido Paterno</label>
-                                            <input type="text" class="form-control" id="inputApellidoUsuario">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputApellidoMaternoUsuario">Apellido Materno</label>
-                                            <input type="text" class="form-control" id="inputApellidoMaternoUsuario">
-                                        </div>
-                                    </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPseudonimo">Pseudónimo</label>
-                                            <input type="text" class="form-control" id="inputPseudonimo">
+                                            <input type="text" th:field="${usuario.pseudonimoUsuario}" class="form-control" id="inputPseudonimo">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="inputPseudonimo">Contraseña</label>
-                                            <input type="password" class="form-control" id="inputPseudonimo">
+                                            <input type="password" th:field="${usuario.autenticacionUsuario}" class="form-control" id="inputPseudonimo">
                                         </div>
                                         <div class="form-group col-md-1">
                                             <label for="inputPseudonimo">Generar</label>
@@ -136,23 +127,20 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="exampleSelect1">Selecciona un área institucional</label>
-                                            <select class="form-control" id="exampleSelect1">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                            <select class="form-control" th:field="${usuario.areaInstitucional.idAreaInstitucional}" id="exampleSelect1">
+                                                <option th:each="area: ${listaAreaInstitucional}"
+                                                    th:text="${area.tituloAreaInstitucional}"
+                                                    th:value="${area.idAreaInstitucional}">1</option>
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <!--Input de adjunto Imagen de Perfil-->
-                                        <label for="exampleInputFile">Selecciona una imagen de perfil</label>
-                                        <input type="file" class="form-control-file" id="infiObjetivoCarrera"
-                                            aria-describedby="fileHelp">
-                                        <small id="fileHelp" class="form-text text-muted">
-                                            Selecciona una imagen de tipo JPG o PNG que quieras mostrar a todos</small>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            <label for="inputNombreUsuario">Email</label>
+                                            <input type="email" th:field="${usuario.emailUsuario}" class="form-control"
+                                                id="inputNombreUsuario">
+                                        </div>
+                                        <input type="hidden" th:field="${usuario.idUsuario}">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Registrar</button>
                                 </form>
@@ -204,7 +192,8 @@
                                                     <td th:text="${usuario.idUsuario}">1</td>
                                                     <td th:text="${usuario.pseudonimoUsuario}">Peseudonimo</td>
                                                     <td th:text="${usuario.emailUsuario}">Email</td>
-                                                    <td th:text="${usuario.areaInstitucional.tituloAreaInstitucional}">Area</td>
+                                                    <td th:text="${usuario.areaInstitucional.tituloAreaInstitucional}">
+                                                        Area</td>
                                                     <td class="td-actions">
                                                         <button type="button" rel="tooltip" title="Editar Imagen"
                                                             class="btn btn-link btn-sm btn-outline-info">

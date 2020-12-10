@@ -5,6 +5,7 @@
  */
 package com.sigeiin.main.web.controllers;
 
+import com.sigeiin.main.web.dao.AspiranteDaoImplementation;
 import com.sigeiin.main.web.dao.iAspiranteDao;
 import com.sigeiin.main.web.dao.iOfertaEducativaDao;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ public class aspiranteController {
     
     @Autowired
     @Qualifier("AspiranteDaoImplementationJPA")
-    private iAspiranteDao serviceAspirante; 
+    private AspiranteDaoImplementation serviceAspirante; 
 
     //Llamamos al de la oferta educativa, ya que se manejan ambos para poder
     //Gestionar a los aspirantes

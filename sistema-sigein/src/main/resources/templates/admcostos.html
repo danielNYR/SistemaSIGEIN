@@ -130,8 +130,8 @@
                                             Nuevo</button>
                                     </div>
                                     <!--Card de diseño-->
-                                    <div class="row" >
-                                        <div class="col-md-12 mt-3"  th:each="promocion: ${listaPromociones}"> 
+                                    <div class="row" th:each="promocion: ${listaPromociones}" >
+                                        <div class="col-md-12 mt-3" >
                                             <!--Control de tamaño del card-->
                                             <div class="card mb-3 ml-5">
                                                 <!--Card de los valores-->
@@ -143,32 +143,21 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
-                                                            
+                                                            <h5 class="card-title"
+                                                                th:text="${promocion.tituloPromocion}">Card title</h5>
                                                             <div class="row">
-                                                                <div class="col-md-3"><small id="fileHelp"
-                                                                        class="form-text text-muted"
-                                                                        th:text="${promocion.fechaInicio}">Fecha
-                                                                        Inicio</small></div>
-                                                                <div class="col-md-1"><small id="fileHelp"
-                                                                        class="form-text text-muted">
+                                                                <!--Fecha de inicio y fin de la promoción-->
+                                                                <div class="col-md-3"><small id="fileHelp" class="form-text text-muted"
+                                                                        th:text="${promocion.fechaInicio}">FechaInicio</small></div>
+                                                                <div class="col-md-1"><small id="fileHelp"class="form-text text-muted">
                                                                         -</small></div>
-                                                                <div class="col-md-3"><small id="fileHelp"
-                                                                        class="form-text text-muted"
-                                                                        th:text="${promocion.fechaFinal}">Fecha
-                                                                        Inicio</small></div>
+                                                                <div class="col-md-3"><small id="fileHelp" class="form-text text-muted"
+                                                                    th:text="${promocion.fechaFinal}">Fecha Inicio</small></div>
                                                             </div>
 
                                                             <p class="card-text" th:text="${promocion.descripcion}">
                                                                 Texto de descripción de la promoción
                                                             </p>
-                                                            <div th:each="oferta: ${listaOferta}">
-                                                                <th:block
-                                                                    th:each="oferta,iter: ${promocion.ofertasEducativas}">
-                                                                    <label th:text="${oferta.TituloOfertaEducativa}">Oferta
-                                                                        Participante</label>
-                                                                    <th:block th:if="${!iter.last}">, </th:block>
-                                                                    </th:block><!--Spring boot, simplemente no sabe cuando parar, no sabe cuando ya terminó de hacer la consulta, por eso falla-->
-                                                            </div>
                                                             <small id="fileHelp" class="form-text text-muted"
                                                                 th:text="${promocion.porcentajePromocion}">Descuento de
                                                                 la promo</small>
@@ -176,12 +165,17 @@
                                                                 <button type="button" rel="tooltip"
                                                                     title="Editar Imagen"
                                                                     class="btn btn-link btn-sm btn-outline-info">
-                                                                    <i class="material-icons">edit</i>
+                                                                    <i class="material-icons align-top">edit</i>
                                                                 </button>
                                                                 <button type="button" rel="tooltip"
                                                                     title="Eliminar Imagen"
                                                                     class="btn btn-outline-danger btn-link btn-sm">
-                                                                    <i class="material-icons text-danger">close</i>
+                                                                    <i class="material-icons text-danger align-top">close</i>
+                                                                </button>
+                                                                <button type="button" rel="tooltip"
+                                                                    title="Eliminar Imagen"
+                                                                    class="btn btn-outline-success btn-link btn-sm">
+                                                                    <i class="material-icons text-success align-top">visibility</i>Ver más...
                                                                 </button>
                                                             </div>
                                                         </div>

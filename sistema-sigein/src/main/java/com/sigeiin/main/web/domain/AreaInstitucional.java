@@ -30,11 +30,17 @@ public class AreaInstitucional implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAreaInstitucional;
     
+    //Relaciones de la tabla AreaInstitucional con la tabla Usuarios
     @OneToMany(mappedBy="areaInstitucional")
     List<Usuario> areaUsuarios;
+    //Relaciones de la tabla Noticias del area Institucional
+    @OneToMany(mappedBy="areaInstitucionalNoticia")
+    List<Noticia>noticasAreaInstitucional;
     
+    //Columnas de la tabla area institucional
     @Column(name ="TituloAreaInstitucional")
     private String tituloAreaInstitucional;
+    
     @Column(name="DescripcionAreaInstitucional")
     private String descripcionAreaInstitucional;
     
@@ -46,5 +52,7 @@ public class AreaInstitucional implements Serializable{
     public void setIdAreaInstitucional(Long idAreaInstitucional) {
         this.idAreaInstitucional = idAreaInstitucional;
     }
+    
+    
     
 }

@@ -7,12 +7,17 @@ package com.sigeiin.main.web.controllers;
 
 import com.sigeiin.main.web.dao.AreaInstitucionalDaoImplementation;
 import com.sigeiin.main.web.dao.UsuarioDaoImplementation;
+import com.sigeiin.main.web.domain.Usuario;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -33,8 +38,36 @@ public class usuariosController {
     @GetMapping({"/admin/usuarios","/admin/gestion_usuarios", "/admin/geusuarios"})
     public String gestionUsuarios(Model model){
         //log.info("El usuario ha entrado al controlador usuarios");
+        model.addAttribute("usuario",new Usuario());
         model.addAttribute("listaAreaInstitucional", serviceAreaInstitucional.listarAreas());
         model.addAttribute("listaUsuarios", serviceUsuario.listarUsuarios());
         return "usuariosadm";
     }
+    
+    
+    @PostMapping({"admin/usuarios/registrar"})
+    public String crearUsuario(Model modelo, Usuario usuario){
+        
+        modelo.addAttribute("usuario", new Usuario());
+        modelo.addAttribute("listaAreaInstitucional", serviceAreaInstitucional.listarAreas());
+        modelo.addAttribute("listaUsuarios", serviceUsuario.listarUsuarios());
+        serviceUsuario.agregarUsuario(usuario);
+        return "redirect:usuariosadm";
+    }
+    
+    /*
+    @RequestMapping(value="/admin/usuarios")
+    public String crear(Map<String, Object>model){
+        Usuario usuario = new Usuario();
+        model.put("usuario", usuario);
+        return "usuariosadm";
+    }
+    
+    @RequestMapping(value="/admin/usuarios/registrar", method=RequestMethod.POST)
+    public String guardar(Usuario usuario){
+        
+        serviceUsuario.agregarUsuario(usuario);
+        return "redirect::usuariosadm";
+    }
+*/
 }

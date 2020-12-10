@@ -29,11 +29,16 @@ public class UsuarioDaoImplementation implements iUsuario{
     //Agregaremos una etiqueta transaccional especificando el tipo de operación
     //Que tendrá permitido realizar
     @Transactional(readOnly = true)
-    
-
     @Override
     public List<Usuario> listarUsuarios() {
         return em.createQuery("from Usuario").getResultList();
     }
+
+    @Transactional
+    @Override
+    public void agregarUsuario(Usuario usuario) {
+        em.persist(usuario);
+    }
+
     
 }

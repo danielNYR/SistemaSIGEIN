@@ -14,8 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -25,7 +24,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "noticia")
+@Table(name = "Noticia")
 public class Noticia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,14 +32,24 @@ public class Noticia implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idNoticia;
+    
+    @Column(name="TituloNoticia")
+    private String tituloNoticia;
+    
+    @Column(name="FechaEmisionNoticia")
+    private String fechaEmisionNoticia;
+    
+    @Column(name = "ContenidoNoticia")
+    private String contenidoNoticia;
+    
+    @Column(name="AdjuntoNoticia")
+    private String adjuntoNoticia;
+    
 
-    @Column
-    private String FechaEmisionNoticia;
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "detallenoticia",
-            joinColumns = @JoinColumn(name = "idNoticia"),
-            inverseJoinColumns = @JoinColumn(name = "idAreaInstitucional"))
-    private Set<AreaInstitucional> areas_institucionales;
+    //Debido a que se trata de una institución educativa, el autor o considerado
+    //Autor de una noticia es el nombre del área institucional que la emite.
+    @ManyToOne(targetEntity = AreaInstitucional.class)
+    @JoinColumn(name="idAreaInstitucional")
+    AreaInstitucional areaInstitucionalNoticia;
     
 }

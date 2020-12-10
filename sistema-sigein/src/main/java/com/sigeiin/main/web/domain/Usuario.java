@@ -43,4 +43,6 @@ public class Usuario implements Serializable{
     @ManyToOne(targetEntity = AreaInstitucional.class)
     @JoinColumn (name="idAreaInstitucional") //Puede que esto sea necesario o no
     AreaInstitucional areaInstitucional;
+    
+    
 }

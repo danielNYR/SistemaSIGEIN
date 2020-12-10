@@ -20,14 +20,14 @@
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
-                <a href="indexadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a href="ofeducativa.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a href="usuariosadm.html" class="list-group-item list-group-item-action border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
                 <a href="admconocenos.html" class="list-group-item list-group-item-action bg-white border-0">
@@ -36,17 +36,16 @@
                 <a href="adminvalores.html" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                <a href="admcostos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a href="admnoticias.html"
-                    class="list-group-item list-group-item-action bg-primary text-white border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-primary text-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
                 <a href="admdirectorio.html" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
-                <a href="admaspirantes.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
             </div>
@@ -171,7 +170,7 @@
                     <div class="col-md-12 mt-5">
                         <div class="card">
                             <div class="card-header card-downgrade-danger">
-                                Moticias Publicadas
+                                Noticias Publicadas
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Mire y Gestione las Noticias Institucionales</h5>
@@ -197,85 +196,17 @@
                                             <!--Inicio del contenedor de la tabla-->
                                             <thead class="text-info">
                                                 <th>ID</th>
-                                                <th>Título</th>
                                                 <th>Fecha Publicación</th>
-                                                <th>Area Institucional</th>
-                                                <th>Usuario</th>
+                                                <th>Título</th>
+                                                <th>Autor</th>
                                                 <th>Gestión</th>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Certificación carrera de derecho.</td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Usuario001</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Ver Noticia"
-                                                            class="btn btn-link btn-sm btn-outline-success">
-                                                            <i class="material-icons text-success">preview</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Últimas fechas de inscripción</td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Usuario24</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Ver Noticia"
-                                                            class="btn btn-link btn-sm btn-outline-success">
-                                                            <i class="material-icons text-success">preview</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Clausura de doctorado</td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Usuario001</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Ver Noticia"
-                                                            class="btn btn-link btn-sm btn-outline-success">
-                                                            <i class="material-icons text-success">preview</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Inicio de curso virtual.</td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Usuario24</td>
+                                                <tr th:each="noticia: ${listaNoticia}">
+                                                    <td th:text="${noticia.idNoticia}">1</td>
+                                                    <td th:text="${noticia.tituloNoticia}">titulo</td>
+                                                    <td th:text="${noticia.fechaEmisionNoticia}">fecha</td>
+                                                    <td th:text="${noticia.areaInstitucionalNoticia.tituloAreaInstitucional}">Area</td>
                                                     <td class="td-actions">
                                                         <button type="button" rel="tooltip" title="Ver Noticia"
                                                             class="btn btn-link btn-sm btn-outline-success">

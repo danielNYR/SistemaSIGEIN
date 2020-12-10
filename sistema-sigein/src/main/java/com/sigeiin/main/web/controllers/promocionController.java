@@ -39,7 +39,7 @@ public class promocionController {
         //log.info("El usuario ha entrado al controlador promociones");
         //model.addAttribute("promocion", new Promocion());
         //model.addAttribute("listaPromociones", servicePromotion.listarPromociones());
-        model.addAttribute("listaOferta", serviceOfertaEducativa.listarOfertas());
+        //model.addAttribute("listaOferta", serviceOfertaEducativa.listarOfertas());
         model.addAttribute("listaPromociones", servicePromotion.listarPromociones());
         
         return "admcostos";
