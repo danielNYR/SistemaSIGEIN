@@ -10,7 +10,10 @@ import java.util.List;
  * @author Danie
  */
 public interface iUsuario {
-    public List<Usuario> listarUsuarios();
     
+    public List<Usuario> listarUsuarios();
     public void agregarUsuario(Usuario usuario);
+    public Usuario encontrarUsuario(Long id);
+    public void eliminarUsuario(Long id);
+    
 }

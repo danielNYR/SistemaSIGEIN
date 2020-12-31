@@ -37,7 +37,24 @@ public class UsuarioDaoImplementation implements iUsuario{
     @Transactional
     @Override
     public void agregarUsuario(Usuario usuario) {
-        em.persist(usuario);
+        if(usuario.getIdUsuario() != null && usuario.getIdUsuario()>0){
+            em.merge(usuario);
+        }else{
+           em.persist(usuario); 
+        }
+        
+    }
+
+    @Transactional
+    @Override
+    public Usuario encontrarUsuario(Long id) {
+        return em.find(Usuario.class, id);
+    }
+
+    @Transactional
+    @Override
+    public void eliminarUsuario(Long id) {
+        em.remove(encontrarUsuario(id));
     }
 
     

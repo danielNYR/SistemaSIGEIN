@@ -15,4 +15,7 @@ import java.util.List;
 public interface iOfertaEducativaDao {
     
     public List<OfertaEducativa> listarOfertas();
+    public void registrarOferta(OfertaEducativa oferta);
+    public OfertaEducativa encontrarOferta(Long id);
+    public void eliminarOferta(Long id);
 }

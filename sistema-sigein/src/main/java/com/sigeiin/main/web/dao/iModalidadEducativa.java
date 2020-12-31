@@ -14,4 +14,7 @@ import java.util.List;
  */
 public interface iModalidadEducativa {
     public List<ModalidadEducativa> listarOfertas();
+    public void registrarModalidad(ModalidadEducativa modalidad);
+    public ModalidadEducativa encontrarModalidad(Long id);
+    public void eliminarModalidad(Long id);
 }

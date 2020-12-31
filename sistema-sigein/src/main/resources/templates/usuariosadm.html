@@ -58,6 +58,13 @@
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
+                    <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -114,11 +121,13 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPseudonimo">Pseudónimo</label>
-                                            <input type="text" th:field="${usuario.pseudonimoUsuario}" class="form-control" id="inputPseudonimo">
+                                            <input type="text" th:field="${usuario.pseudonimoUsuario}"
+                                                class="form-control" id="inputPseudonimo">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label for="inputPseudonimo">Contraseña</label>
-                                            <input type="password" th:field="${usuario.autenticacionUsuario}" class="form-control" id="inputPseudonimo">
+                                            <input type="password" th:field="${usuario.autenticacionUsuario}"
+                                                class="form-control" id="inputPseudonimo">
                                         </div>
                                         <div class="form-group col-md-1">
                                             <label for="inputPseudonimo">Generar</label>
@@ -127,7 +136,9 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="exampleSelect1">Selecciona un área institucional</label>
-                                            <select class="form-control" th:field="${usuario.areaInstitucional.idAreaInstitucional}" id="exampleSelect1">
+                                            <select class="form-control"
+                                                th:field="${usuario.areaInstitucional.idAreaInstitucional}"
+                                                id="exampleSelect1">
                                                 <option th:each="area: ${listaAreaInstitucional}"
                                                     th:text="${area.tituloAreaInstitucional}"
                                                     th:value="${area.idAreaInstitucional}">1</option>
@@ -189,20 +200,22 @@
                                             </thead>
                                             <tbody>
                                                 <tr th:each="usuario: ${listaUsuarios}">
-                                                    <td th:text="${usuario.idUsuario}">1</td>
+                                                    t<td th:ext="${usuario.idUsuario}">1</td>
                                                     <td th:text="${usuario.pseudonimoUsuario}">Peseudonimo</td>
                                                     <td th:text="${usuario.emailUsuario}">Email</td>
                                                     <td th:text="${usuario.areaInstitucional.tituloAreaInstitucional}">
                                                         Area</td>
                                                     <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
+                                                        <a th:href="@{/admin/usuarios/editar/} + ${usuario.idUsuario}">
+                                                            <button type="button" rel="tooltip" title="Editar Imagen"
                                                             class="btn btn-link btn-sm btn-outline-info">
                                                             <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
+                                                        </button></a>
+                                                        <a th:href="@{/admin/usuarios/eliminar/} + ${usuario.idUsuario}">
+                                                            <button type="button" rel="tooltip" title="Eliminar Imagen"
                                                             class="btn btn-outline-danger btn-link btn-sm">
                                                             <i class="material-icons text-danger">close</i>
-                                                        </button>
+                                                        </button></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -224,10 +237,10 @@
     </div>
     <!-- /#wrapper -->
     <!--Librerías de Javascript-->
-    <script src="js/jquery-3.5.1.min.js "></script>
-    <script src="js/popper.min.js "></script>
+    <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
     <!--Bootstrap-->
-    <script src="js/bootstrap.min.js "></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 <!--Fin del body-->
 

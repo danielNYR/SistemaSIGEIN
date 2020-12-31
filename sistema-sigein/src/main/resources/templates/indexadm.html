@@ -23,35 +23,42 @@
                 <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-primary text-white">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a th:href="@{/admin/oferta_educativa}" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
                 <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                    <!--Opción Conócenos-->
-                <a th:href="@{/templates/admconocenos.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/templates/admconocenos.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                    <!--Opción valores institucionales-->
-                <a th:href="@{/templates/adminvalores.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/templates/adminvalores.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                    <!--Opción Costos y Promociones-->
+                <!--Opción Costos y Promociones-->
                 <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
                 <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                    <!--Opción Directorio Institucional-->
-                <a th:href="@{/templates/admdirectorio.html}" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/templates/admdirectorio.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -186,9 +193,9 @@
                                 <p>Ingresa el logo oficial de la institución</p>
                                 <div class="form-group">
                                     <input type="file" class="form-control-file" id="infiObjetivoCarrera"
-                                    aria-describedby="fileHelp">
-                                <small id="fileHelp" class="form-text text-muted">
-                                    Selecciona una imagen de tipo PNG que funcione como logo institucional</small>
+                                        aria-describedby="fileHelp">
+                                    <small id="fileHelp" class="form-text text-muted">
+                                        Selecciona una imagen de tipo PNG que funcione como logo institucional</small>
                                 </div><br><br>
                             </div>
                             <div class="row">
@@ -461,10 +468,10 @@
     </div>
     <!-- /#wrapper -->
     <!--Librerías de Javascript-->
-    <script src="js/jquery-3.5.1.min.js "></script>
-    <script src="js/popper.min.js "></script>
+    <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
     <!--Bootstrap-->
-    <script src="js/bootstrap.min.js "></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 <!--Fin del body-->
 

@@ -12,4 +12,5 @@ import java.util.List;
  */
 public interface iPromocionDao {
     public List<Promocion>listarPromociones();
+    public void registrarPromocion(Promocion promocion);
 }

@@ -33,14 +33,18 @@ public class ModalidadEducativa implements Serializable{
     //Identificador de la tabla ModalidadEducativa
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idModalidadEducativa")
     private Long idModalidadEducativa;
     
     @Column(name = "NombreModalidadEducativa")
     private String nombreModalidadEducativa;
-    @Column(name="PeriodoModalidadEducativa")
-    private String periodoModalidadEducativa;
+    @Column(name="SemestresModalidadEducativa")
+    private String semestresModalidadEducativa;
     @Column(name="DescripcionModalidadEducativa")
     private String descripcionModalidadEducativa;
+    //Archivo adjunto, en este caso es una foto.
+    @Column(name="AdjuntoModalidadEducativa")
+    private String adjuntoModalidadEducativa;
     
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "detalleOfertaEducativa",

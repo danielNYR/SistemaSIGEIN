@@ -13,4 +13,7 @@ import java.util.List;
  */
 public interface iAreaInstitucional {
     List <AreaInstitucional> listarAreas();
+    public void registrarArea(AreaInstitucional area);
+    public AreaInstitucional encontrarArea(Long id);
+    public void eliminarArea(Long id);
 }

@@ -17,9 +17,11 @@
     <div class="d-flex" id="wrapper">
 
         <!-- Sidebar -->
+        <!-- Inicio de la barra lateral -->
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
+                <!--Opciones de la barra lateral - Página de Inicio-->
                 <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
@@ -28,33 +30,40 @@
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                <a href="admconocenos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/templates/admconocenos.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                <a href="adminvalores.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/templates/adminvalores.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
+                <!--Opción Costos y Promociones-->
                 <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a th:href="@{/admin/noticias}"
-                    class="list-group-item list-group-item-action bg-primary text-white border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                <a href="admdirectorio.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/templates/admdirectorio.html}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
-                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/modalidad}"
+                    class="list-group-item list-group-item-action bg-primary bg-white border-0">
                     <i class="material-icons align-top mr-2">book_online</i>
                     Modalidad Educativa</a>
                 <a th:href="@{/admin/area_institucional}"
-                    class="list-group-item list-group-item-action bg-white border-0">
+                    class="list-group-item list-group-item-action bg-primary text-white border-0">
                     <i class="material-icons align-top mr-2">pages</i>
                     Área Institucional</a>
             </div>
@@ -66,7 +75,7 @@
             <!--Nota: Agregar al final un botón dentro del navbar que permita desplegar el menu lateral en modo movil. Esto permitirá
             Que se pueda visualizar el men lateral dentro de una pantalla de 5.6" o superior-->
             <nav class="navbar navbar-expand-lg navbar-light bg-white">
-                <h6 class="h6">GESTIÓN DE NOTICIAS INSTITUCIONALES</h6>
+                <h6 class="h6">GESTIÓN DE MODALIDADES EDUCATIVAS</h6>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -102,71 +111,33 @@
                 <div class="row mt-5">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header rounded card-downgrade-info">
-                                Redacción de Noticias Institucionales.
+                            <div class="card-header rounded card-downgrade-warning">
+                                Formulario de Registro de Modalidades
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Aquí puede crear una nueva noticia</h5>
-                                <h6 class="card-title text-muted">Ingrese los datos solicitados para publicar.</h6>
-                                <form th:action="@{/admin/noticias/registrar}" th:object="${noticia}" method="POST"
+                                <h5 class="card-title">Ingrese los datos solicitados</h5>
+                                <form th:action="@{/admin/area_institucional/registrar}" th:object="${area}" method="POST"
                                     enctype="multipart/form-data">
                                     <!--Inicio del form solicitando datos-->
-                                    <h6 class="card-title text-muted">Todos los datos son necesarios, así que todos
-                                        deben estar completos para continuar.</h6>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputTituloNoticia">Título de Noticia</label>
-                                            <input type="text" th:field="${noticia.tituloNoticia}" class="form-control"
-                                                id="inputTituloNoticia">
+                                            <label for="inputnombreArea">Nombre del Área Institucional</label>
+                                            <input type="text" th:field="${area.tituloAreaInstitucional}"
+                                                class="form-control" id="inputnombreArea">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputSubtituloNoticia">Subtítulo de Noticia</label>
-                                            <input type="text" class="form-control" id="inputSubtituloNoticia">
-                                        </div>
-                                    </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-4">
-                                            <label for="inputNombreUsuario">Nombre de Usuario</label>
-                                            <input type="text" class="form-control" id="inputNombreUsuario">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputFechaPublicacion">Fecha de Publicación</label>
-                                            <input type="date" class="form-control"
-                                                th:field="${noticia.fechaEmisionNoticia}" id="inputFechaPublicacion">
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="exampleSelect1">Área Institucional</label>
-                                            <select class="form-control" id="exampleSelect1"
-                                                th:field="${noticia.areaInstitucionalNoticia.idAreaInstitucional}">
-                                                <option th:each="area: ${listaAreas}"
-                                                    th:text="${area.TituloAreaInstitucional}"
-                                                    th:value="${area.idAreaInstitucional}">1</option>
-                                            </select>
-                                            <input type="hidden" th:field="${noticia.idNoticia}">
-                                        </div>
+                                        <input type="hidden" th:field="${area.idAreaInstitucional}">
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label for="inputAddress">Contenido de la noticia.</label>
-                                            <textarea class="textarea form-control" id="txaObjetivoCarrera"
-                                                maxlength="900" th:field="${noticia.contenidoNoticia}"
-                                                placeholder="Ingresa aquí el contenido de la noticia. Recuerda que tienes 900 caracteres para ello."
-                                                rows="7"></textarea>
+                                            <label for="inputAddress">Descripción de Área Institucional</label>
+                                            <textarea th:field="${area.descripcionAreaInstitucional}"
+                                                class="textarea form-control" id="txaObjetivoCarrera"
+                                                placeholder="Ingresa una descripcion del área institucional, sólo servirá para identificarla y diferenciarla de otra con un nombre similar"
+                                                rows="3" maxlength="140"></textarea>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <!--Input de adjunto Imagen de Perfil-->
-                                        <label for="exampleInputFile">Selecciona una imagen que asista a la
-                                            noticia.</label>
-                                        <input type="file" class="form-control-file" name="file01"
-                                            aria-describedby="fileHelp">
-                                        <small id="fileHelp" class="form-text text-muted">
-                                            Selecciona una imagen de tipo JPG o PNG que quieras mostrar a los
-                                            lectores.</small>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary"><i
-                                            class="material-icons text-white align-top">edit</i>Publicar</button>
+                                    <button type="submit" class="btn btn-primary">Registrar</button>
                                 </form>
                                 <!--Final del form que solicita datos-->
                             </div>
@@ -180,14 +151,14 @@
                     <div class="col-md-12 mt-5">
                         <div class="card">
                             <div class="card-header card-downgrade-danger">
-                                Noticias Publicadas
+                                Areas Institucionales Existentes
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title">Mire y Gestione las Noticias Institucionales</h5>
+                                <h5 class="card-title">Gestione aquí las áreas institucionales</h5>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <input type="text" class="form-control"
-                                            placeholder="Ingrese el nombre de usuario que desea encontrar">
+                                            placeholder="Ingrese el nombre del área institucional">
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" class="btn btn-primary"><i
@@ -198,41 +169,34 @@
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn btn-primary form-control"><i
-                                                class="material-icons text-white align-top">queue</i>Redactar
+                                                class="material-icons text-white align-top">queue</i>Registrar
                                             Nuevo</button>
                                     </div>
                                     <div class="card-body table-responsive">
                                         <table class="table table-hover">
                                             <!--Inicio del contenedor de la tabla-->
-                                            <thead class="text-info">
+                                            <thead class="text-danger">
                                                 <th>ID</th>
-                                                <th>Fecha Publicación</th>
-                                                <th>Título</th>
-                                                <th>Autor</th>
+                                                <th>Título del Área</th>
                                                 <th>Gestión</th>
                                             </thead>
                                             <tbody>
-                                                <tr th:each="noticias: ${listaNoticia}">
-                                                    <td th:text="${noticias.idNoticia}">1</td>
-                                                    <td th:text="${noticias.tituloNoticia}">titulo</td>
-                                                    <td th:text="${noticias.fechaEmisionNoticia}">fecha</td>
-                                                    <td
-                                                        th:text="${noticias.areaInstitucionalNoticia.tituloAreaInstitucional}">
-                                                        Area</td>
+                                                <tr th:each="area: ${listaAreas}">
+                                                    <td th:text="${area.idAreaInstitucional}">1</td>
+                                                    <td th:text="${area.tituloAreaInstitucional}">Modalidad</td>
                                                     <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Ver Noticia"
-                                                            class="btn btn-link btn-sm btn-outline-success">
-                                                            <i class="material-icons text-success">preview</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
+                                                        <a th:href="@{/admin/area_institucional/editar/} + ${area.idAreaInstitucional}"><button type="button" rel="tooltip" title="Editar Campos"
                                                             class="btn btn-link btn-sm btn-outline-info">
                                                             <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
+                                                        </button></a>
+                                                        <a th:href="@{/admin/area_institucional/eliminar/} + ${area.idAreaInstitucional}"><button type="button" rel="tooltip" title="Eliminar"
                                                             class="btn btn-outline-danger btn-link btn-sm">
                                                             <i class="material-icons text-danger">close</i>
+                                                        </button></a>
+                                                        <button type="button" rel="tooltip" title="Detalles"
+                                                            class="btn btn-outline-success btn-link btn-sm">
+                                                            <i class="material-icons text-success">preview</i>
                                                         </button>
-
                                                     </td>
                                                 </tr>
                                             </tbody>

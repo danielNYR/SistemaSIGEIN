@@ -29,5 +29,11 @@ public class NoticiaDaoImplementation implements iNoticiaDao {
     public List<Noticia> listarNoticias() {
         return em.createQuery("from Noticia").getResultList(); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Transactional
+    @Override
+    public void registrarNoticia(Noticia noticia) {
+        em.persist(noticia);
+    }
     
 }

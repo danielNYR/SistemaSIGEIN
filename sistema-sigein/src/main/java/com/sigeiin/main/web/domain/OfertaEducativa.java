@@ -13,10 +13,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -40,37 +36,35 @@ public class OfertaEducativa {
     @OneToMany(mappedBy = "ofertaEducativa")
     private List<Aspirante> aspirantes;
     
+    @OneToMany(mappedBy = "ofertaEducativaDirectorio")
+    private List<Directorio> directorio;
+    
     //Componentes adicionales de la tabla: 
     @Column(name = "TituloOfertaEducativa")
-    private String TituloOfertaEducativa;
+    private String tituloOfertaEducativa;
     
     @Column(name = "ObjetivoGeneralOfertaEducativa")
-    private String ObjetivoGeneralOfertaEducativa;
+    private String objetivoGeneralOfertaEducativa;
     
     @Column(name = "AcercaDeOfertaEducativa")
-    private String AcercaDeOfertaEducativa;
+    private String acercaDeOfertaEducativa;
     
     @Column(name ="ReticulaOfertaEducativa")
-    private String ReticulaOfertaEducativa;
+    private String reticulaOfertaEducativa;
     
     @Column(name ="PlanEstudiosOfertaEducativa")
-    private String PlanEstudiosOfertaEducativa;
+    private String planEstudiosOfertaEducativa;
     
     @Column(name ="AdjuntoOfertaEducativa")
-    private String AdjuntoOfertaEducativa;
+    private String adjuntoOfertaEducativa;
     
     @Column(name ="AdjuntoObjetivoOfertaEducativa")
-    private String AdjuntoObjetivoOfertaEducativa;
+    private String adjuntoObjetivoOfertaEducativa;
     
     @Column(name = "AdjuntoAcercaOfertaEducativa")
-    private String AdjuntoAcercaOfertaEducativa;
+    private String adjuntoAcercaOfertaEducativa;
     
-    //Relación resultante del many to many
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Promocion.class)
-    @JoinTable(name = "DetallePromocion",
-            joinColumns = @JoinColumn(name = "idOfertaEducativa"),
-            inverseJoinColumns = @JoinColumn(name = "idPromocion"))
-    private Set<OfertaEducativa> detallePromocion;
+    
     
 
 }

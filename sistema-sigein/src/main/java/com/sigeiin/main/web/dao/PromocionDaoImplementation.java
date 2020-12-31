@@ -29,6 +29,12 @@ public class PromocionDaoImplementation implements iPromocionDao{
     public List<Promocion> listarPromociones() {
         return em.createQuery("from Promocion").getResultList();
     }
+
+    @Transactional
+    @Override
+    public void registrarPromocion(Promocion promocion) {
+        em.persist(promocion);
+    }
     
    
     

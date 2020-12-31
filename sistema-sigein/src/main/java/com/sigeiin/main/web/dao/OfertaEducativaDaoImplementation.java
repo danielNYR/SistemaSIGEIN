@@ -5,7 +5,6 @@
  */
 package com.sigeiin.main.web.dao;
 
-import com.sigeiin.main.web.domain.Aspirante;
 import com.sigeiin.main.web.domain.OfertaEducativa;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -35,5 +34,31 @@ public class OfertaEducativaDaoImplementation implements iOfertaEducativaDao{
     public List<OfertaEducativa> listarOfertas() {
         return em.createQuery("from OfertaEducativa").getResultList();
     }
+
+    @Transactional
+    @Override
+    public void registrarOferta(OfertaEducativa oferta) {
+        if(oferta.getIdOfertaEducativa() != null && oferta.getIdOfertaEducativa() > 0){
+            em.merge(oferta);
+        }else{
+           em.persist(oferta); 
+        }
+        
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public OfertaEducativa encontrarOferta(Long id) {
+        return em.find(OfertaEducativa.class, id);
+    }
+    
+    
+    @Override
+    @Transactional
+    public void eliminarOferta(Long id) {
+        em.remove(encontrarOferta(id)); //Permite encontrar id y luego eliminarlo
+        
+    }
+
     
 }

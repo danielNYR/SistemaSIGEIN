@@ -37,5 +37,28 @@ public class ModalidadEducativaDaoImplementation implements iModalidadEducativa{
          //To change body of generated methods, choose Tools | Templates.
          return em.createQuery("from ModalidadEducativa").getResultList();
     }
+
+    @Transactional
+    @Override
+    public void registrarModalidad(ModalidadEducativa modalidad) {
+        if(modalidad.getIdModalidadEducativa() != null && modalidad.getIdModalidadEducativa() > 0){
+            em.merge(modalidad);
+        }else{
+            em.persist(modalidad); 
+        }
+        
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ModalidadEducativa encontrarModalidad(Long id) {
+        return em.find(ModalidadEducativa.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void eliminarModalidad(Long id) {
+        em.remove(encontrarModalidad(id));
+    }
    
 }

@@ -6,7 +6,8 @@
 package com.sigeiin.main.web.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -37,23 +37,33 @@ public class Promocion implements Serializable{
     @Column(name="idPromocion")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPromocion;
+    
     @Column(name="TituloPromocion")
     private String tituloPromocion;
+    
     @Column(name="FechaInicio")
     //@DateTimeFormat
-    private Date fechaInicio;
+    private String fechaInicio;
+    
     @Column(name="FechaFinal")
-    //@DateTimeFormat
-    private Date fechaFinal;
+    private String fechaFinal;
+    
     @Column(name="Descripcion")
     private String descripcion;
+    
     @Column(name="PorcentajePromocion")
     private int porcentajePromocion;
+    
     @Column(name="AdjuntoPromocion")
     private String adjuntoPromocion;
     //Aquí va la unión ManyToMany
-    @ManyToMany(mappedBy = "detallePromocion")
-    Set <OfertaEducativa>ofertasEducativas;
+    
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = OfertaEducativa.class)
+    @JoinTable(name = "detallepromocion",
+            joinColumns = @JoinColumn(name = "idPromocion"),
+            inverseJoinColumns = @JoinColumn(name = "idOfertaEducativa"))
+    private Set<OfertaEducativa> ofertasEducativas = new HashSet();
+    
     
     
     

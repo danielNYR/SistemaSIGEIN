@@ -29,5 +29,32 @@ public class AreaInstitucionalDaoImplementation implements iAreaInstitucional{
     public List<AreaInstitucional> listarAreas() {
         return em.createQuery("from AreaInstitucional").getResultList();
     }
+
+    @Transactional
+    @Override
+    public void registrarArea(AreaInstitucional area) {
+        if(area.getIdAreaInstitucional() != null && area.getIdAreaInstitucional() > 0){
+            em.merge(area);
+        }else{
+           em.persist(area); 
+        }
+        
+    }
+
+    @Transactional
+    @Override
+    public AreaInstitucional encontrarArea(Long id) {
+        return em.find(AreaInstitucional.class, id);
+    }
+
+    @Transactional
+    @Override
+    public void eliminarArea(Long id) {
+        em.remove(encontrarArea(id));
+    }
+
+    
+    
+    
     
 }

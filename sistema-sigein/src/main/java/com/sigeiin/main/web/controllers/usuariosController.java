@@ -8,16 +8,15 @@ package com.sigeiin.main.web.controllers;
 import com.sigeiin.main.web.dao.AreaInstitucionalDaoImplementation;
 import com.sigeiin.main.web.dao.UsuarioDaoImplementation;
 import com.sigeiin.main.web.domain.Usuario;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
@@ -35,7 +34,7 @@ public class usuariosController {
     private AreaInstitucionalDaoImplementation serviceAreaInstitucional;
     
     
-    @GetMapping({"/admin/usuarios","/admin/gestion_usuarios", "/admin/geusuarios"})
+    @GetMapping({"/admin/usuarios","/admin/usuarios/usuariosadm", "/admin/geusuarios"})
     public String gestionUsuarios(Model model){
         //log.info("El usuario ha entrado al controlador usuarios");
         model.addAttribute("usuario",new Usuario());
@@ -52,11 +51,43 @@ public class usuariosController {
         modelo.addAttribute("listaAreaInstitucional", serviceAreaInstitucional.listarAreas());
         modelo.addAttribute("listaUsuarios", serviceUsuario.listarUsuarios());
         serviceUsuario.agregarUsuario(usuario);
-        return "redirect:usuariosadm";
+        return "redirect:/admin/usuarios";
+    }
+    
+    @RequestMapping(value ="/admin/usuarios/editar/{id}")
+    public String editarAreaInstitucional(@PathVariable(value="id") Long id, Model model){
+        
+        Usuario usuario = null;
+        
+        if(id>0){
+            usuario = serviceUsuario.encontrarUsuario(id);
+        }else{
+            //Aqui pondré el redirect para los modal de error
+        }
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("listaAreaInstitucional", serviceAreaInstitucional.listarAreas());
+        model.addAttribute("listaUsuarios", serviceUsuario.listarUsuarios());
+        return "usuariosadm";
+    }
+    
+    @RequestMapping(value = "/admin/usuarios/eliminar/{id}")
+    public String eliminarAreaInstitucional(@PathVariable(value="id") Long id){
+        if(id>0 || id!=null){
+            serviceUsuario.eliminarUsuario(id);
+        }
+        return "redirect:/admin/usuarios";
     }
     
     /*
-    @RequestMapping(value="/admin/usuarios")
+    @Request @PostMapping({"admin/usuarios/registrar"})
+    public String crearUsuario(Model modelo, Usuario usuario){
+        
+        modelo.addAttribute("usuario", new Usuario());
+        modelo.addAttribute("listaAreaInstitucional", serviceAreaInstitucional.listarAreas());
+        modelo.addAttribute("listaUsuarios", serviceUsuario.listarUsuarios());
+        serviceUsuario.agregarUsuario(usuario);
+        return "redirect:usuariosadm";
+    }Mapping(value="/admin/usuarios")
     public String crear(Map<String, Object>model){
         Usuario usuario = new Usuario();
         model.put("usuario", usuario);

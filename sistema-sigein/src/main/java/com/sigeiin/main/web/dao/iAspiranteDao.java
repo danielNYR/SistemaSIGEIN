@@ -16,5 +16,8 @@ public interface iAspiranteDao {
     //Información y devolviéndola al controlador en forma de ArrayList
     //Aspirante objetoAspirante;
     public List<Aspirante> listarAspirantes();
+    public void registrarAspirante(Aspirante aspirante);
+    public Aspirante encontrarAspirante(Long id);
+    public void eliminarAspirante(Long id);
     
 }

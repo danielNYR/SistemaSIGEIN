@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface iNoticiaDao {
     public List<Noticia> listarNoticias();
+    public void registrarNoticia(Noticia noticia);
 }

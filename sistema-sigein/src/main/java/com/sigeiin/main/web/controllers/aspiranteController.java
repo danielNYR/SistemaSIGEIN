@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
@@ -41,6 +43,15 @@ public class aspiranteController {
         model.addAttribute("listaOferta", serviceOfertaEducativa.listarOfertas());
         model.addAttribute("listaAspirantes", serviceAspirante.listarAspirantes());
         return "admaspirantes";
+    }
+    
+    //Método Eliminar
+    @RequestMapping(value = "/admin/aspirante/eliminar/{id}")
+    public String eliminar(@PathVariable(value="id") Long id){
+        if(id>0){
+            serviceAspirante.eliminarAspirante(id);
+        }
+        return "redirect:/admin/aspirante";
     }
     
 }

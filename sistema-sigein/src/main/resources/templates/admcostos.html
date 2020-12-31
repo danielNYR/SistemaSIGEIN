@@ -57,6 +57,13 @@
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
+                    <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -130,8 +137,8 @@
                                             Nuevo</button>
                                     </div>
                                     <!--Card de diseño-->
-                                    <div class="row" th:each="promocion: ${listaPromociones}" >
-                                        <div class="col-md-12 mt-3" >
+                                    <div class="row" th:each="promocion: ${listaPromociones}">
+                                        <div class="col-md-12 mt-3">
                                             <!--Control de tamaño del card-->
                                             <div class="card mb-3 ml-5">
                                                 <!--Card de los valores-->
@@ -147,12 +154,17 @@
                                                                 th:text="${promocion.tituloPromocion}">Card title</h5>
                                                             <div class="row">
                                                                 <!--Fecha de inicio y fin de la promoción-->
-                                                                <div class="col-md-3"><small id="fileHelp" class="form-text text-muted"
-                                                                        th:text="${promocion.fechaInicio}">FechaInicio</small></div>
-                                                                <div class="col-md-1"><small id="fileHelp"class="form-text text-muted">
+                                                                <div class="col-md-3"><small id="fileHelp"
+                                                                        class="form-text text-muted"
+                                                                        th:text="${promocion.fechaInicio}">FechaInicio</small>
+                                                                </div>
+                                                                <div class="col-md-1"><small id="fileHelp"
+                                                                        class="form-text text-muted">
                                                                         -</small></div>
-                                                                <div class="col-md-3"><small id="fileHelp" class="form-text text-muted"
-                                                                    th:text="${promocion.fechaFinal}">Fecha Inicio</small></div>
+                                                                <div class="col-md-3"><small id="fileHelp"
+                                                                        class="form-text text-muted"
+                                                                        th:text="${promocion.fechaFinal}">Fecha
+                                                                        Inicio</small></div>
                                                             </div>
 
                                                             <p class="card-text" th:text="${promocion.descripcion}">
@@ -170,12 +182,15 @@
                                                                 <button type="button" rel="tooltip"
                                                                     title="Eliminar Imagen"
                                                                     class="btn btn-outline-danger btn-link btn-sm">
-                                                                    <i class="material-icons text-danger align-top">close</i>
+                                                                    <i
+                                                                        class="material-icons text-danger align-top">close</i>
                                                                 </button>
                                                                 <button type="button" rel="tooltip"
                                                                     title="Eliminar Imagen"
                                                                     class="btn btn-outline-success btn-link btn-sm">
-                                                                    <i class="material-icons text-success align-top">visibility</i>Ver más...
+                                                                    <i
+                                                                        class="material-icons text-success align-top">visibility</i>Ver
+                                                                    más...
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -209,48 +224,66 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form th:action="@{/admin/promocion/registrar}" th:object="${promocion}" method="POST"
+                                    enctype="multipart/form-data">
                                     <div>
                                         <label for="inputPromocionTitulos">Título de la Promoción</label>
-                                        <input type="text" class="form-control" id="inputPromocionTitulos">
+                                        <input type="text" th:field="${promocion.tituloPromocion}" class="form-control"
+                                            id="inputPromocionTitulos">
                                     </div>
 
                                     <div>
-                                        <label for="inputPromocionCostoProm">Costo promocional</label>
-                                        <input type="text" class="form-control" id="inputPromocionCostoProm">
+                                        <label for="inputPromocionCostoProm">Porcentaje de Descuento Promocional</label>
+                                        <input type="number" th:field="${promocion.porcentajePromocion}" min="1"
+                                            max="99" class="form-control" id="inputPromocionCostoProm">
                                     </div>
                                     <div>
                                         <label for="inputPromocionDescripcion">Acerca de la promoción</label>
                                         <textarea class="textarea form-control" id="txaObjetivoPromocionDescripcion"
-                                            placeholder="Ingresa aquí el objetivo propuesto de la carrera que ingresas."
+                                            th:field="${promocion.descripcion}"
+                                            placeholder="Ingresa aquí una descripcion acerca de la promoción, para que los visitantes puedan verla"
                                             rows="3"></textarea>
                                     </div>
                                     <div>
                                         <!--Input de adjunto: Adjunto de la promoción nueva -->
                                         <label for="fileImagenPromocion">Selecciona una imagen que acompañe a la
                                             promoción</label>
-                                        <input type="file" class="form-control-file" id="fileImagenPromocion"
+                                        <input type="file" class="form-control-file" name="fileImagenPromocion"
                                             aria-describedby="fileHelp">
                                         <small id="fileHelp" class="form-text text-muted">
                                             Selecciona una imagen de tipo JPG o PNG que ejemplifique la promoción
                                             publicada</small>
                                     </div>
+                                    <div>
+                                        <label for="selectOfertas">Selecciona las ofertas educativas
+                                            participantes</label>
+                                        <select name="select_ofertasParticipantes" id="selectOfertas"
+                                            th:field="${promocion.ofertasEducativas}" multiple="multiple"
+                                            class="form-control">
+                                            <option th:each="oferta: ${listaOferta}"
+                                                th:text="${oferta.TituloOfertaEducativa}"
+                                                th:value="${oferta.idOfertaEducativa}"></option>
+                                        </select>
+                                    </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputFechaInicialPromocion">Fecha Inicial</label>
-                                            <input type="date" class="form-control" id="inputFechaInicialPromocion">
+                                            <input type="date" class="form-control" th:field="${promocion.fechaInicio}"
+                                                id="inputFechaInicialPromocion">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputFechaFinalPromocion">Fecha Final</label>
-                                            <input type="date" class="form-control" id="inputFechaFinalPromocion">
+                                            <input type="date" class="form-control" th:field="${promocion.fechaFinal}"
+                                                id="inputFechaFinalPromocion">
                                         </div>
                                     </div>
-
+                                    <input type="hidden" th:field="${promocion.idPromocion}">
+                                    <div class="form-row">
+                                        <button type="submit" class="btn btn-primary form-control">Guardar
+                                            Registros</button>
+                                    </div>
                                 </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Guardar Regisro</button>
                             </div>
                         </div>
                     </div>
@@ -262,11 +295,11 @@
         <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
-    <!--Librerías de Javascript-->
-    <script src="js/jquery-3.5.1.min.js "></script>
-    <script src="js/popper.min.js "></script>
+    <!--Librerías de Javascript th:href="@{/css/bootstrap.min.css}"-->
+    <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
+    <script th:src="@{/js/popper.min.js}"></script>
     <!--Bootstrap-->
-    <script src="js/bootstrap.min.js "></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 <!--Fin del body-->
 
