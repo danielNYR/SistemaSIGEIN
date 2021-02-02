@@ -5,9 +5,10 @@
  */
 package com.sigeiin.main.web.controllers;
 
-import com.sigeiin.main.web.dao.AreaInstitucionalDaoImplementation;
-import com.sigeiin.main.web.dao.NoticiaDaoImplementation;
 import com.sigeiin.main.web.domain.Noticia;
+import com.sigeiin.main.web.repository.AreaInstitucionalDaoImplementation;
+import com.sigeiin.main.web.repository.NoticiaDaoImplementation;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

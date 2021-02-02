@@ -34,8 +34,8 @@ public class Institucion implements Serializable{
     private Long idInstitucion;
     
     @Column(name="nombreInstitucion")
-    
     private String nombreInstitucion;
+    
     @Column(name="acronimoInstitucion")
     
     private String acronimoInstitucion;
@@ -51,8 +51,11 @@ public class Institucion implements Serializable{
     @Column(name="youtubeInstitucional")
     private String youtubeInstitucional;
     
-    @Column(name="localizacionInstitucional")
-    private String localizacionInstitucional;
+    @Column(name="latitudLocalizacion")
+    private String latitudInstitucional;
+    
+    @Column(name="longitudLocalizacion")
+    private String longitudInstitucional;
     
     @OneToMany(mappedBy="institucionInformacion")
     List<InformacionInstitucional>informacionInstitucion;

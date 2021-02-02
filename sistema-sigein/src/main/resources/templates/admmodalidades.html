@@ -39,8 +39,7 @@
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
                 <!--Opción valores institucionales-->
-                <a th:href="@{/templates/adminvalores.html}"
-                    class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
                 <!--Opción Costos y Promociones-->
@@ -62,7 +61,7 @@
                     class="list-group-item list-group-item-action bg-primary text-white bg-primary border-0">
                     <i class="material-icons align-top mr-2">book_online</i>
                     Modalidad Educativa</a>
-                    <a th:href="@{/admin/area_institucional}"
+                <a th:href="@{/admin/area_institucional}"
                     class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">pages</i>
                     Área Institucional</a>
@@ -84,7 +83,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/admin/}">Inicio<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><i class="material-icons align-top mr-2">notifications</i></a>
@@ -116,7 +115,8 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Ingrese los datos solicitados</h5>
-                                <form th:action="@{/admin/modalidad/registrar}" th:object="${modalidad}" method="POST" enctype="multipart/form-data">
+                                <form th:action="@{/admin/modalidad/registrar}" th:object="${modalidad}" method="POST"
+                                    enctype="multipart/form-data">
                                     <!--Inicio del form solicitando datos-->
 
                                     <div class="form-row">
@@ -127,29 +127,35 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputSemestresModalidad">Cantidad de Semestres</label>
-                                            <input type="number" min="3" max="13" th:field="${modalidad.semestresModalidadEducativa}"
-                                                class="form-control" id="inputSemestresModalidad">
+                                            <input type="number" min="3" max="13"
+                                                th:field="${modalidad.semestresModalidadEducativa}" class="form-control"
+                                                id="inputSemestresModalidad">
                                         </div>
 
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
-                                            <label  for="inputAddress">Ingresa una descripción de la modalidad</label>
-                                            <textarea th:field="${modalidad.descripcionModalidadEducativa}" class="textarea form-control" id="txaObjetivoCarrera"
+                                            <label for="inputAddress">Ingresa una descripción de la modalidad</label>
+                                            <textarea th:field="${modalidad.descripcionModalidadEducativa}"
+                                                class="textarea form-control" id="txaObjetivoCarrera"
                                                 placeholder="Ingresa aquí una descripción de la modalidad educativa que planeas registrar"
                                                 rows="3"></textarea>
                                         </div>
-                                        
+
                                         <input type="hidden" th:field="${modalidad.idModalidadEducativa}">
                                     </div>
                                     <div class="form-row">
-                                        
+
                                         <div class="form-group col-md-6">
                                             <!--Input de adjunto 1: Oferta Educativa-->
                                             <label for="exampleInputFile">Selecciona imagen para mostrar</label>
-                                            <input type="file" class="form-control-file" id="file" name="file" aria-describedby="fileHelp"  th:text="'Archivo actual: ' + ${modalidad.adjuntoModalidadEducativa}">
+                                            <!--Si hay un error checa el name-->
+                                            <input type="file" class="form-control-file" name="modalidadFile"
+                                                aria-describedby="fileHelp"
+                                                th:text="'Archivo actual: ' + ${modalidad.adjuntoModalidadEducativa}">
                                             <small id="fileHelp" class="form-text text-muted">
-                                                Selecciona una imagen de tipo JPG o PNG que ejemplifique la modalidad agregada</small>
+                                                Selecciona una imagen de tipo JPG o PNG que ejemplifique la modalidad
+                                                agregada</small>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Registrar</button>
@@ -200,23 +206,26 @@
                                             <tbody>
                                                 <tr th:each="modalidad: ${listaModalidad}">
                                                     <td th:text="${modalidad.idModalidadEducativa}">1</td>
-                                                    <td><img th:src="@{'/uploads/' + ${modalidad.adjuntoModalidadEducativa}}" 
-                                                         width="100" height="100"
-                                                        class="rounded-circle"></td>
+                                                    <td><img th:src="@{'/uploads/' + ${modalidad.adjuntoModalidadEducativa}}"
+                                                            width="100" height="100" class="rounded-circle"></td>
                                                     <td th:text="${modalidad.nombreModalidadEducativa}">NombreModalidad
                                                     </td>
-                                                    <td th:text="${modalidad.semestresModalidadEducativa} + ' Semestres'">Modalidad</td>
+                                                    <td
+                                                        th:text="${modalidad.semestresModalidadEducativa} + ' Semestres'">
+                                                        Modalidad</td>
                                                     <td class="td-actions">
-                                                        <a th:href="@{/admin/modalidad/editar/}+${modalidad.idModalidadEducativa}" >
+                                                        <a
+                                                            th:href="@{/admin/modalidad/editar/}+${modalidad.idModalidadEducativa}">
                                                             <button type="button" rel="tooltip" title="Editar Modalidad"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button></a>
-                                                        <a th:href="@{/admin/modalidad/eliminar/}+${modalidad.idModalidadEducativa}">
+                                                                class="btn btn-link btn-sm btn-outline-info">
+                                                                <i class="material-icons">edit</i>
+                                                            </button></a>
+                                                        <a
+                                                            th:href="@{/admin/modalidad/eliminar/}+${modalidad.idModalidadEducativa}">
                                                             <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button></a>
+                                                                class="btn btn-outline-danger btn-link btn-sm">
+                                                                <i class="material-icons text-danger">close</i>
+                                                            </button></a>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -240,6 +249,7 @@
     <!--Librerías de Javascript-->
     <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/jsigeins.valor.js}"></script>
     <!--Bootstrap-->
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>

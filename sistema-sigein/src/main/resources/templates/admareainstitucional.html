@@ -34,12 +34,12 @@
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
                 <!--Opción Conócenos-->
-                <a th:href="@{/templates/admconocenos.html}"
+                <a th:href="@{/admin/conocenos}"
                     class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
                 <!--Opción valores institucionales-->
-                <a th:href="@{/templates/adminvalores.html}"
+                <a th:href="@{/admin/valores}"
                     class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
@@ -51,7 +51,7 @@
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
                 <!--Opción Directorio Institucional-->
-                <a th:href="@{/templates/admdirectorio.html}"
+                <a th:href="@{/admin/directorio}"
                     class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
@@ -84,7 +84,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/admin/}">Inicio <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><i class="material-icons align-top mr-2">notifications</i></a>

@@ -9,7 +9,6 @@
  */
 package com.sigeiin.main.web.controllers;
 
-import com.sigeiin.main.web.dao.PromocionDaoImplementation;
 import com.sigeiin.main.web.dao.iOfertaEducativaDao;
 import com.sigeiin.main.web.domain.Noticia;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.sigeiin.main.web.domain.Promocion;
+import com.sigeiin.main.web.repository.AreaInstitucionalDaoImplementation;
+import com.sigeiin.main.web.repository.PromocionDaoImplementation;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -45,12 +47,17 @@ public class promocionController {
     @Qualifier("OfertaEducativaDaoImplementationJPA")
     private iOfertaEducativaDao serviceOfertaEducativa;
     
+    @Autowired
+    @Qualifier("AreaInstitucionalDaoImplementationJPA")
+    private AreaInstitucionalDaoImplementation serviceArea;
+    
     @GetMapping({"/admin/promociones","/admin/gestion_promociones"})
     public String gestionPromociones(Model model){
         //log.info("El usuario ha entrado al controlador promociones");
         model.addAttribute("promocion", new Promocion());
         //model.addAttribute("listaPromociones", servicePromotion.listarPromociones());
         model.addAttribute("listaOferta", serviceOfertaEducativa.listarOfertas());
+        model.addAttribute("listaAreas", serviceArea.listarAreas());
         model.addAttribute("listaPromociones", servicePromotion.listarPromociones());
         
         return "admcostos";
@@ -77,12 +84,12 @@ public class promocionController {
             }
     	log.info("dale");
         }
-        
+        servicePromotion.registrarPromocion(promocion);
         modelo.addAttribute("promocion", new Promocion());
         //model.addAttribute("listaPromociones", servicePromotion.listarPromociones());
         modelo.addAttribute("listaOferta", serviceOfertaEducativa.listarOfertas());
         modelo.addAttribute("listaPromociones", servicePromotion.listarPromociones());
-        servicePromotion.registrarPromocion(promocion);
+        
         return "redirect:/admin/promocion/";
     }
 }

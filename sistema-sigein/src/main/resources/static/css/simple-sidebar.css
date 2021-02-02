@@ -89,6 +89,18 @@ box-shadow: 2px 6px 5px -1px rgba(194,194,194,0.85);
     background: linear-gradient(45deg,#ffc107, #fceb00);
   }
 
+ .card-downgrade-purple{
+    background: linear-gradient(45deg,#7401DF, #642EFE);
+  }
+  
+  .card-downgrade-pink{
+    background: linear-gradient(45deg,#FF0080, #FE2E64);
+  }
+  
+  .card-downgrade-blue{
+    background: linear-gradient(45deg,#00BFFF, #01DFD7);
+  }
+
   .list-group-item:hover{
     color: blue;
   }

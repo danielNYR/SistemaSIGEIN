@@ -32,13 +32,11 @@
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
                 <!--Opción Conócenos-->
-                <a th:href="@{/templates/admconocenos.html}"
-                    class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/conocenos}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
                 <!--Opción valores institucionales-->
-                <a th:href="@{/templates/adminvalores.html}"
-                    class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
                 <!--Opción Costos y Promociones-->
@@ -49,8 +47,7 @@
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
                 <!--Opción Directorio Institucional-->
-                <a th:href="@{/templates/admdirectorio.html}"
-                    class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/directorio}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
@@ -59,6 +56,10 @@
                 <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">book_online</i>
                     Modalidad Educativa</a>
+                <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -97,10 +98,9 @@
                     </ul>
                 </div>
             </nav>
-
             <div class="container-fluid">
                 <!--Inicio del contenedor de cartas-->
-                <div class="row mt-3">
+                <div class="row">
                     <!--card de Visitas-->
                     <div class="col-md-3">
                         <div class="card">
@@ -108,7 +108,8 @@
                                 <a class="card-title h5 text-white">
                                     Registro Aspirantes<i class="material-icons text-white align-top ml-1"
                                         style="font-size: 3em;">person</i></a><br>
-                                <a class="card-text text-white mb-0" style="text-align: right; font-size: 20px;">5</a>
+                                <a class="card-text text-white mb-0" style="text-align: right; font-size: 20px;"
+                                    th:text="${aspirantesRegs}">5</a>
                             </div>
                         </div>
                     </div>
@@ -117,10 +118,11 @@
                     <div class="col-md-3">
                         <div class="card rounded">
                             <div class="card-body bg-warning text-white">
-                                <a class="card-title h5 text-white">
+                                <a class="card-title h5 text-white" th:href="@{/admin/noticias}">
                                     Noticias Publicadas<i class="material-icons text-white align-top ml-2"
                                         style="font-size: 3em;">campaign</i></a><br>
-                                <a class="card-text text-white mb-0" style="text-align: right; font-size: 20px;">5</a>
+                                <a class="card-text text-white mb-0" style="text-align: right; font-size: 20px;"
+                                    th:text="${noticiasPublic}">5</a>
                             </div>
 
                         </div>
@@ -130,8 +132,8 @@
                         <div class="card rounded border-0">
                             <div class="card-body bg-danger text-white">
                                 <a class="card-title h5 text-white">
-                                    Visitas Registradas<i class="material-icons text-white align-top ml-4"
-                                        style="font-size: 3em;">info</i></a><br>
+                                    Promociones<i class="material-icons text-white align-top ml-5"
+                                        style="font-size: 3em;">attach_money</i></a><br>
                                 <a class="card-text text-white mb-0" style="text-align: right; font-size: 20px;">5</a>
                             </div>
                         </div>
@@ -149,182 +151,119 @@
                     </div>
 
                 </div>
-                <!--Fin de row que contiene información-->
-                <h4 class="h6 mt-4 text-secondary">INFORMACIÓN INSTITUCIONAL</h4>
-                <!--Inicio del card de información institucional reelevante-->
-                <!--inicio del row que contiene el card de gestión de ubicación-->
-                <div class="row mt-5">
-                    <div class="col-md-6 mt-3">
-                        <!--Inicio del card del mapa-->
-                        <div class="card">
-                            <div class="card-header card-downgrade-success bg-primary">
-                                <h5 class="card-title">Nombre Institucional</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Ingresa el nombre de la institución</p>
-                                <div class="form-group">
-                                    <textarea class=" textarea form-control border-top-0 border-right-0 border-left-0 "
-                                        id="exampleTextarea"
-                                        placeholder="Ingresa el nombre de la institución que quieres que aparezca en la barra de navegación, si tu institución es conocida por abreviaturas, agrega solo las abreviaturas."
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success form-control">Guardar
-                                            <i class="material-icons text-white align-top mr-3">save</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Fin del card de localización-->
-                    <!--Inicio del card con la razón de estudio con ellos-->
-                    <div class="col-md-6 mt-3">
-                        <!--Inicio del card del mapa-->
-                        <div class="card">
-                            <div class="card-header card-downgrade-primary bg-primary">
-                                <h5 class="card-title">Logo Institucional</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Ingresa el logo oficial de la institución</p>
-                                <div class="form-group">
-                                    <input type="file" class="form-control-file" id="infiObjetivoCarrera"
-                                        aria-describedby="fileHelp">
-                                    <small id="fileHelp" class="form-text text-muted">
-                                        Selecciona una imagen de tipo PNG que funcione como logo institucional</small>
-                                </div><br><br>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success form-control mr-3">Guardar
-                                            <i class="material-icons text-white align-top mr-3">save</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Final del card de ¿Por qué estudiar con nosotros?-->
-                </div>
                 <!--Final del row que contiene la información institucional: Nombre y Logo-->
                 <!--Título de Redes Sociales-->
-                <h6 class="h6 text-secondary mt-3">REDES SOCIALES</h6>
+                <!--Inicio del contenedor del formulario de la oferta educativa-->
                 <div class="row mt-5">
-                    <!--Inicia del row de redes sociales-->
-                    <!--Inicio de card Facebook-->
-                    <div class="col-md-4">
+                    <div class="col-md-12 mt-5">
                         <div class="card">
-                            <div class="card-header card-downgrade-primary bg-primary">
-                                <h5 class="card-title">Facebook</h5>
+                            <div class="card-header rounded card-downgrade-purple">
+                                Información Institucional
                             </div>
                             <div class="card-body">
-                                <p>Ingresa la página de facebook institucional</p>
-                                <div class="form-group">
-                                    <textarea class=" textarea form-control border-top-0 border-right-0 border-left-0 "
-                                        id="exampleTextarea"
-                                        placeholder="Ingresa aquí el enlace a tu página de facebook"
-                                        rows="3"></textarea>
-                                </div>
+                                <h5 class="card-title">Desde aquí se gestiona la información general de la institución
+                                </h5>
+                                <h6 class="card-title text-muted">Es necesario tener este formulario completo.</h6>
+                                <form th:action="@{/admin/registrar/institucion}" th:object="${institucion}"
+                                    method="POST" enctype="multipart/form-data">
+                                    <div class="form-row">
+                                        <input type="hidden" th:field="${institucion.idInstitucion}">
+                                        <div class="form-group col-md-8">
+                                            <label for="inputNombreInstitucion">Nombre de la Institución</label>
+                                            <input type="text" class="form-control" id="inputNombreInstitucion"
+                                                th:field="${institucion.nombreInstitucion}">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputAcro">Acrónimo Institución</label>
+                                            <input type="text" class="form-control" id="inputAcro"
+                                                th:field="${institucion.acronimoInstitucion}">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="inputAddress">Razón Institucional</label>
+                                            <textarea class="textarea form-control" id="txaObjetivoCarrera"
+                                                maxlength="200" th:field="${institucion.razonInstitucional}"
+                                                placeholder="Ingresa aquí el contenido de la noticia. Recuerda que tienes 900 caracteres para ello."
+                                                rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-muted h5">Localización de la Institución</h5>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputNombreUsuario">Latitud</label>
+                                            <input type="text" class="form-control"
+                                                th:field="${institucion.latitudInstitucional}" id="inputLatitud">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputFechaPublicacion">Longitud</label>
+                                            <input type="text" class="form-control"
+                                                th:field="${institucion.longitudInstitucional}" id="inputLongitud">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-muted h5">Redes Sociales Institucionales</h5>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputNombreUsuario">Facebook Institucional</label>
+                                            <input type="text" class="form-control"
+                                                th:field="${institucion.facebookInstitucional}" id="inputFacebookIns">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputFechaPublicacion">Canal de YouTube Institucional</label>
+                                            <input type="text" class="form-control"
+                                                th:field="${institucion.youtubeInstitucional}" id="inputYoutubeIns">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <!--Input de adjunto Imagen de Perfil-->
+                                        <label for="exampleInputFile">Logo Institucional</label>
+
+                                        <input type="file" class="form-control-file" name="fileInstitucion"
+                                            aria-describedby="fileHelp"
+                                            onchange="document.getElementById('imgMuestraLogoIns').src = window.URL.createObjectURL(this.files[0])">
+                                        <img id="imgMuestraLogoIns" src="#" alt="No ha seleccionado imagen" width="100"
+                                            height="100" />
+
+                                        <small class="form-text text-muted"
+                                            th:text="${institucion.logoInstitucion}"></small>
+                                        <small id="fileHelp" class="form-text text-muted">
+                                            Selecciona una imagen de tipo PNG con un tamaño de 100 x 100</small>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-10"><i class="material-icons text-warning align-top">info</i>
+                                            <a href="javascript:;">Más información de los campos</a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-primary form-control mr-3">Guardar
+                                                <i class="material-icons text-white align-top mr-3">save</i>
+                                            </button>
+                                        </div>
+
+                                    </div>
+
+                                </form>
+                                <!--Final del form que solicita datos-->
                             </div>
-                            <div class="card-footer bg-white">
-                                <i class="material-icons text-warning align-top">info</i>
-                                <a href="javascript:;">¿Cómo obtengo el enlace de la página de facebook?</a>
-                            </div>
+                            <!--Final del card-->
                         </div>
                     </div>
-                    <!--Fin de card Facebook-->
-                    <!--Card de Youtube-->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header card-downgrade-danger bg-primary">
-                                <h5 class="card-title">YouTube</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Ingresa el canal institucional de YouTube</p>
-                                <div class="form-group">
-                                    <textarea class=" textarea form-control border-top-0 border-right-0 border-left-0 "
-                                        id="exampleTextarea"
-                                        placeholder="Ingresa el enlace del canal institucional de YouTube"
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <i class="material-icons text-warning align-top">info</i>
-                                <a href="javascript:;">¿Cómo obtengo el enlace del canal institucional?</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Fin del card YouTube-->
-                    <!--Inicio de card Twitter-->
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-header card-downgrade-info bg-primary">
-                                <h5 class="card-title">Twitter</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Ingresa el enlace del Twitter institucional</p>
-                                <div class="form-group">
-                                    <textarea class=" textarea form-control border-top-0 border-right-0 border-left-0 "
-                                        id="exampleTextarea"
-                                        placeholder="Ingresa aquí el enlace para que los seguidores te puedan encontrar"
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <i class="material-icons text-warning align-top">info</i>
-                                <a href="javascript:;">¿Cómo obtengo el enlace del twitter institucional?</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!--Fin de card Twiiter-->
                 </div>
                 <!--Final del row que contiene los cards de redes-->
                 <!--inicio del row que contiene el card de gestión de ubicación-->
                 <div class="row mt-5">
-                    <div class="col-md-6 mt-3">
-                        <!--Inicio del card del mapa-->
-                        <div class="card">
-                            <div class="card-header card-downgrade-success bg-primary">
-                                <h5 class="card-title">Gestión de Localización</h5>
-                            </div>
-                            <div class="card-body">
-                                <p>Ingresa tu ubicación de google maps para que sepan donde estás.</p>
-                                <div class="form-group">
-                                    <textarea class=" textarea form-control border-top-0 border-right-0 border-left-0 "
-                                        id="exampleTextarea"
-                                        placeholder="Ingresa el iFrame obtenido de google maps para que sepan donde estás. Recuerda que el tamaño debe ser: "
-                                        rows="3"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-9"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success form-control">Guardar
-                                            <i class="material-icons text-white align-top mr-3">save</i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <i class="material-icons text-warning align-top">info</i>
-                                <a href="javascript:;">¿Cómo obtengo el iframe de mi ubicación de google maps?</a>
-                            </div>
-                        </div>
-                    </div>
+
                     <!--Fin del card de localización-->
                     <!--Inicio del card con la razón de estudio con ellos-->
-                    <div class="col-md-6 mt-3">
+                    <div class="col-md-12 mt-3">
                         <!--Inicio del card del mapa-->
                         <div class="card">
-                            <div class="card-header card-downgrade-primary bg-primary">
-                                <h5 class="card-title">¿Por qué estudiar con nosotros?</h5>
+                            <div class="card-header card-downgrade-purple bg-primary">
+                                <h5 class="card-title">¿Por qué somos la mejor opción?</h5>
                             </div>
                             <div class="card-body">
                                 <p>Escribe un breve texto de por qué los estudiantes deben elegir tu institución.</p>
@@ -336,18 +275,16 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-9"></div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-success form-control mr-3">Guardar
+                                <div class="col-md-9 ml-3"><i class="material-icons text-warning align-top">info</i>
+                                    <a href="javascript:;">Esto se mostrará debajo del carrousel de imágenes.</a>
+                                </div>
+                                <div class="col-md-2 ml-5">
+                                    <div class="form-group ml-5">
+                                        <button type="button" class="btn btn-primary form-control">Guardar
                                             <i class="material-icons text-white align-top mr-3">save</i>
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="card-footer bg-white">
-                                <i class="material-icons text-warning align-top">info</i>
-                                <a href="javascript:;">Esto se mostrará debajo del carrousel de imágenes.</a>
                             </div>
                         </div>
                     </div>
@@ -359,87 +296,52 @@
                     <div class="col-md-12 mt-3">
                         <!--Inicio del card del mapa-->
                         <div class="card">
-                            <div class="card-header card-downgrade-warning bg-primary">
+                            <div class="card-header card-downgrade-purple bg-primary">
                                 <h5 class="card-title">Gestión de Imágenes de Inicio</h5>
                             </div>
+
                             <div class="card-body">
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+
+                                    </div>
+                                    <div class="col-md-3">
+
+                                    </div>
+                                    <div class="col-md-1">
+
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-primary form-control" data-toggle="modal"
+                                            data-target="#modalRegistrarImgIndex">
+                                            <i class="material-icons text-white align-top">queue</i>Registrar
+                                            Nuevo</button>
+                                    </div>
+
+                                </div>
                                 <div class="card-body table-responsive">
                                     <table class="table table-hover">
-                                        <thead class="text-warning">
+                                        <thead class="text-info">
                                             <th>ID</th>
                                             <th>Vista</th>
-                                            <th>Ruta</th>
                                             <th>Titulo</th>
                                             <th>Información Adicional</th>
                                             <th>Gestión</th>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td><img src="/assets/img/isep/isep_img_1.jpg" width="100" height="100"
-                                                        class="rounded-circle"></td>
-                                                <td>src/img/isep_01.jpg</td>
-                                                <td>Las mejores instalaciones</td>
-                                                <td>Contamos con instalaciones de primer nivel</td>
+                                            <tr th:each="indexes: ${listaIndex}">
+                                                <td th:text="${indexes.idIndex}"></td>
+                                                <td><img th:src="@{'/uploads/' + ${indexes.adjuntoIndex}}" width="100"
+                                                        height="100" class="rounded-circle"></td>
+                                                <td th:text="${indexes.tituloAdjunto}">Las mejores instalaciones</td>
+                                                <td th:text="${indexes.subtituloAdjunto}">Contamos con instalaciones de
+                                                    primer nivel</td>
                                                 <td class="td-actions">
-                                                    <button type="button" rel="tooltip" title="Editar Imagen"
-                                                        class="btn btn-link btn-sm btn-outline-info">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                        class="btn btn-outline-danger btn-link btn-sm">
-                                                        <i class="material-icons text-danger">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><img src="/assets/img/isep/isep_img_2.jpg" width="100" height="100"
-                                                        class="rounded-circle"></td>
-                                                <td>src/img/isep_01.jpg</td>
-                                                <td>Las mejores instalaciones</td>
-                                                <td>Contamos con instalaciones de primer nivel</td>
-                                                <td class="td-actions">
-                                                    <button type="button" rel="tooltip" title="Editar Imagen"
-                                                        class="btn btn-link btn-sm btn-outline-info">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                        class="btn btn-outline-danger btn-link btn-sm">
-                                                        <i class="material-icons text-danger">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><img src="/assets/img/isep/isep_img_3.jpg" width="100" height="100"
-                                                        class="rounded-circle"></td>
-                                                <td>src/img/isep_01.jpg</td>
-                                                <td>Las mejores instalaciones</td>
-                                                <td>Contamos con instalaciones de primer nivel</td>
-                                                <td class="td-actions">
-                                                    <button type="button" rel="tooltip" title="Editar Imagen"
-                                                        class="btn btn-link btn-sm btn-outline-info">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
-                                                    <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                        class="btn btn-outline-danger btn-link btn-sm">
-                                                        <i class="material-icons text-danger">close</i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td><img src="/assets/img/isep/isep_img_4.jpg" width="100" height="100"
-                                                        class="rounded-circle"></td>
-                                                <td>src/img/isep_01.jpg</td>
-                                                <td>Las mejores instalaciones</td>
-                                                <td>Contamos con instalaciones de primer nivel</td>
-                                                <td class="td-actions">
-                                                    <button type="button" rel="tooltip" title="Editar Imagen"
-                                                        class="btn btn-link btn-sm btn-outline-info">
-                                                        <i class="material-icons">edit</i>
-                                                    </button>
+                                                    <a th:href="@{/admin/imagenIndex/}+${indexes.idIndex}">
+                                                        <button type="button" rel="tooltip" title="Editar Imagen"
+                                                            class="btn btn-link btn-sm btn-outline-info">
+                                                            <i class="material-icons">edit</i>
+                                                        </button></a>
                                                     <button type="button" rel="tooltip" title="Eliminar Imagen"
                                                         class="btn btn-outline-danger btn-link btn-sm">
                                                         <i class="material-icons text-danger">close</i>
@@ -460,6 +362,57 @@
                     <!--Fin del card de localización-->
                 </div>
                 <!--Final del row que contiene al mapa-->
+                <!--Inicio del modal que se encarga del registro de imagenes-->
+                <div class="modal fade" id="modalRegistrarImgIndex" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Registro de Imágenes Institucionales</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form th:action="@{/admin/registrar/imagenIndex}" th:object="${index}" method="POST"
+                                    enctype="multipart/form-data">
+                                    <div>
+                                        <label for="inputPromocionTitulos">Título de la Imagen</label>
+                                        <input type="text" class="form-control" th:field="${index.tituloAdjunto}"
+                                            id="inputPromocionTitulos" maxlength="125">
+                                        <input type="hidden" th:field="${index.idIndex}">
+                                    </div>
+                                    <div>
+                                        <label for="inputPromocionDescripcion">Descripción de la imagen</label>
+                                        <textarea class="textarea form-control" id="txaObjetivoPromocionDescripcion"
+                                            placeholder="Ingresa aquí el objetivo propuesto de la carrera que ingresas."
+                                            rows="3" th:field="${index.subtituloAdjunto}" maxlength="250"></textarea>
+                                        <small id="fileHelp" class="form-text text-muted"><i
+                                                class="material-icons text-warning align-top">info</i>
+                                            Describa el origen de la imagen y por que la coloca en su página principal
+                                        </small>
+                                    </div>
+                                    <div>
+                                        <!--Input de adjunto: Adjunto de la promoción nueva -->
+                                        <label for="fileImagenPromocion">Selecciona una imagen que acompañe al valor
+                                            descrito</label>
+                                        <input type="file" class="form-control-file" aria-describedby="fileHelp"
+                                            name="fileIndex" th:text="'Archivo actual: ' + ${index.adjuntoIndex}">
+                                        <small id="fileHelp" class="form-text text-muted">
+                                            Selecciona una imagen de tipo JPG o PNG que quiera mostrar en su página
+                                            principal.</small>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar Regisro</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Final del modal-->
             </div>
             <!--Final de container fluid-->
         </div>
@@ -470,6 +423,7 @@
     <!--Librerías de Javascript-->
     <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/js/popper.min.js}"></script>
+    <script th:src="@{/js/sigeins.index.validations.js}"></script>
     <!--Bootstrap-->
     <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>

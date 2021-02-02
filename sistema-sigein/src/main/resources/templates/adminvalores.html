@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Instituto Superior de Especialidades Pedagógicas</title>
@@ -19,35 +20,47 @@
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
-                <a href="indexadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                 <!--Opciones de la barra lateral - Página de Inicio-->
+                 <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a href="ofeducativa.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a href="usuariosadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                <a href="admconocenos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/admin/conocenos}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                <a href="adminvalores.html"
-                    class="list-group-item list-group-item-action bg-primary text-white  border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-primary text-white">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                <a href="admcostos.html" class="list-group-item list-group-item-action border-0">
+                <!--Opción Costos y Promociones-->
+                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a href="admnoticias.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                <a href="admdirectorio.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/admin/directorio}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
-                <a href="admaspirantes.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
+                <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -116,34 +129,40 @@
                                     <!--Botón buscar-->
                                     <div class=" ml-5 col-md-2">
                                         <button type="button" class="btn btn-warning text-white form-control"
-                                            data-toggle="modal" data-target="#modalRegistrarPromocion">
+                                            data-toggle="modal" data-target="#modalRegistrarValor">
                                             <i class="material-icons text-white align-top">note_add</i> Registrar
                                             Nuevo</button>
                                     </div>
                                     <!--Card de diseño-->
+
                                     <div class="row">
-                                        <div class="col-md-11 mt-3 ml-5">
+                                        <!--Inicio del card que contiene el valor-->
+                                        <div class="col-md-11 mt-3 ml-5" th:each="valores: ${listaValores}">
                                             <!--Control de tamaño del card-->
                                             <div class="card mb-3 ml-5">
                                                 <!--Card de los valores-->
                                                 <div class="row no-gutters">
                                                     <div class="col-md-2 ml-2">
-                                                        <img src="/assets/img/valores/valor_compromiso_default.jpg"
+                                                        <img th:src="@{'/uploads/' + ${valores.adjuntoValor}}"
                                                             class="card-img mt-3 ml-2 mr-2 mb-2" alt="..." height="140"
                                                             width="70">
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">This is a wider card with supporting
+                                                            <h5 class="card-title" th:text="${valores.tituloValor}">Card
+                                                                title</h5>
+                                                            <p class="card-text" th:text="${valores.descripcionValor}">
+                                                                This is a wider card with supporting
                                                                 text below as a natural lead-in to additional content.
                                                                 This content is a little bit longer.</p>
                                                             <div class="" style="margin-left: 10px;">
-                                                                <button type="button" rel="tooltip"
-                                                                    title="Editar Imagen"
-                                                                    class="btn btn-link btn-sm btn-outline-info">
-                                                                    <i class="material-icons">edit</i>
-                                                                </button>
+                                                                <a
+                                                                    th:href="@{/admin/valores/editar/}+${valores.idValor}">
+                                                                    <button type="button" rel="tooltip"
+                                                                        title="Editar Valor"
+                                                                        class="btn btn-link btn-sm btn-outline-info">
+                                                                        <i class="material-icons">edit</i>
+                                                                    </button></a>
                                                                 <button type="button" rel="tooltip"
                                                                     title="Eliminar Imagen"
                                                                     class="btn btn-outline-danger btn-link btn-sm">
@@ -153,84 +172,10 @@
                                                         </div>
                                                     </div>
                                                     <!--Final del card de valores-->
-
                                                 </div>
                                             </div>
                                         </div>
                                         <!--Parte final del card de valores-->
-                                        <div class="col-md-11 mt-3 ml-5">
-                                            <!--Control de tamaño del card-->
-                                            <div class="card mb-3 ml-5">
-                                                <!--Card de los valores-->
-                                                <div class="row no-gutters">
-                                                    <div class="col-md-2 ml-2">
-                                                        <img src="/assets/img/valores/valor_compromiso_default.jpg"
-                                                            class="card-img mt-3 ml-2 mr-2 mb-2" alt="..." height="140"
-                                                            width="70">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">This is a wider card with supporting
-                                                                text below as a natural lead-in to additional content.
-                                                                This content is a little bit longer.</p>
-                                                            <div class="" style="margin-left: 10px;">
-                                                                <button type="button" rel="tooltip"
-                                                                    title="Editar Imagen"
-                                                                    class="btn btn-link btn-sm btn-outline-info">
-                                                                    <i class="material-icons">edit</i>
-                                                                </button>
-                                                                <button type="button" rel="tooltip"
-                                                                    title="Eliminar Imagen"
-                                                                    class="btn btn-outline-danger btn-link btn-sm">
-                                                                    <i class="material-icons text-danger">close</i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--Final del card de valores-->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--Parte final del card de valores-->
-                                        <div class="col-md-11 mt-3 ml-5">
-                                            <!--Control de tamaño del card-->
-                                            <div class="card mb-3 ml-5">
-                                                <!--Card de los valores-->
-                                                <div class="row no-gutters">
-                                                    <div class="col-md-2 ml-2">
-                                                        <img src="/assets/img/valores/valor_compromiso_default.jpg"
-                                                            class="card-img mt-3 ml-2 mr-2 mb-2" alt="..." height="140"
-                                                            width="70">
-                                                    </div>
-                                                    <div class="col-md-8">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">Card title</h5>
-                                                            <p class="card-text">This is a wider card with supporting
-                                                                text below as a natural lead-in to additional content.
-                                                                This content is a little bit longer.</p>
-                                                            <div class="" style="margin-left: 10px;">
-                                                                <button type="button" rel="tooltip"
-                                                                    title="Editar Imagen"
-                                                                    class="btn btn-link btn-sm btn-outline-info">
-                                                                    <i class="material-icons">edit</i>
-                                                                </button>
-                                                                <button type="button" rel="tooltip"
-                                                                    title="Eliminar Imagen"
-                                                                    class="btn btn-outline-danger btn-link btn-sm">
-                                                                    <i class="material-icons text-danger">close</i>
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--Final del card de valores-->
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--Parte final del card de valores-->
-
                                     </div>
 
                                 </div>
@@ -243,7 +188,7 @@
                 <!--Fin del contenedor de la tabla-->
                 <!--Inicio del modal-->
                 <!-- Modal -->
-                <div class="modal fade" id="modalRegistrarPromocion" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal fade" id="modalRegistrarValor" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -254,16 +199,19 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form th:action="@{/admin/valores/registrar}" th:object="${valor}" method="POST"
+                                    enctype="multipart/form-data">
                                     <div>
                                         <label for="inputPromocionTitulos">Título del Valor</label>
-                                        <input type="text" class="form-control" id="inputPromocionTitulos">
+                                        <input type="text" class="form-control" th:field="${valor.tituloValor}"
+                                            id="inputPromocionTitulos" maxlength="125">
+                                        <input type="hidden" th:field="${valor.idValor}">
                                     </div>
                                     <div>
                                         <label for="inputPromocionDescripcion">Descripción del valor</label>
                                         <textarea class="textarea form-control" id="txaObjetivoPromocionDescripcion"
                                             placeholder="Ingresa aquí el objetivo propuesto de la carrera que ingresas."
-                                            rows="3"></textarea>
+                                            rows="3" th:field="${valor.descripcionValor}" maxlength="250"></textarea>
                                         <small id="fileHelp" class="form-text text-muted"><i
                                                 class="material-icons text-warning align-top">info</i>
                                             Describa el por qué este valor describe acciones o comportamientos de la
@@ -273,18 +221,18 @@
                                         <!--Input de adjunto: Adjunto de la promoción nueva -->
                                         <label for="fileImagenPromocion">Selecciona una imagen que acompañe al valor
                                             descrito</label>
-                                        <input type="file" class="form-control-file" id="fileImagenPromocion"
-                                            aria-describedby="fileHelp">
+                                        <input type="file" class="form-control-file" aria-describedby="fileHelp"
+                                            name="fileValor" th:text="'Archivo actual: ' + ${valor.adjuntoValor}">
                                         <small id="fileHelp" class="form-text text-muted">
                                             Selecciona una imagen de tipo JPG o PNG que ejemplifique el valor
                                             publicado.</small>
                                     </div>
-
+                                    <button type="submit" class="btn btn-primary">Guardar Regisro</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Guardar Regisro</button>
+
                             </div>
                         </div>
                     </div>
@@ -299,8 +247,10 @@
     <!--Librerías de Javascript-->
     <script th:src="@{/js/jquery-3.5.1.min.js}"></script>
     <script th:src="@{/js/popper.min.js}"></script>
+    
     <!--Bootstrap-->
     <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/jsigeins.valor.js}"></script>
 </body>
 <!--Fin del body-->
 

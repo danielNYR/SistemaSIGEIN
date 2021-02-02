@@ -26,12 +26,18 @@ public class Inicio implements Serializable{
     private static final long SerialVersionUID = 1L;
     
     //Identificador de la tabla Aspirante
+  //Identificador de la tabla Aspirante
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idInicio")
-    private Long idInicio;
+    private Long idIndex;
     
-    private String adjuntoInicio;
+    @Column(name ="adjuntoInicio")
+    private String adjuntoIndex;
+    
+    @Column(name="tituloAdjunto")
     private String tituloAdjunto;
+    
+    @Column(name="subtituloAdjunto")
     private String subtituloAdjunto;
 }

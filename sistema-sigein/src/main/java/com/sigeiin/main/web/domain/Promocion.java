@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.Data;
 
@@ -58,11 +59,16 @@ public class Promocion implements Serializable{
     private String adjuntoPromocion;
     //Aquí va la unión ManyToMany
     
+    @ManyToOne(targetEntity = AreaInstitucional.class)
+    @JoinColumn (name="idAreaInstitucional")
+    AreaInstitucional areaInstitucionalPromo;
+    /*
     @ManyToMany(fetch = FetchType.LAZY, targetEntity = OfertaEducativa.class)
     @JoinTable(name = "detallepromocion",
             joinColumns = @JoinColumn(name = "idPromocion"),
             inverseJoinColumns = @JoinColumn(name = "idOfertaEducativa"))
-    private Set<OfertaEducativa> ofertasEducativas = new HashSet();
+    private Set<OfertaEducativa> ofertasEducativas;
+    */
     
     
     

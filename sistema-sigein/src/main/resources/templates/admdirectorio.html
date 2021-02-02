@@ -20,35 +20,43 @@
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
-                <a href="indexadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a href="ofeducativa.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a href="usuariosadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                <a href="admconocenos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/admin/conocenos}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                <a href="adminvalores.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                <a href="admcostos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Costos y Promociones-->
+                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a href="admnoticias.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                <a href="admdirectorio.html"
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/admin/directorio}"
                     class="list-group-item list-group-item-action bg-primary text-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
-                <a href="admaspirantes.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -67,7 +75,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/admin/}">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><i class="material-icons align-top mr-2">notifications</i></a>
@@ -123,20 +131,20 @@
                                             <!--Inicio del contenedor de la tabla-->
                                             <thead class="text-info">
                                                 <th>ID</th>
-                                                <th>Imagen</th>
-                                                <th>Pseudonimo</th>
-                                                <th>Area Institucional</th>
                                                 <th>Nombre</th>
-                                                <th>Gestión</th>
+                                                <th>Teléfono</th>
+                                                <th>E-Mail</th>
+                                                <th>Area Institucional</th>
+                                                <th>Puesto Institucional</th>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><img src="/assets/img/isep/isep_img_1.jpg" width="100"
-                                                            height="100" class="rounded-circle"></td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Contamos con instalaciones de primer nivel</td>
+                                                <tr th:each="directorio: ${listaDirectorio}">
+                                                    <td th:text="${directorio.idDirectorio}">1</td>
+                                                    <td th:text="${directorio.nombreDirectorio} + ' ' + ${directorio.apellidoPaterno} + ' ' + ${directorio.apellidoMaterno} ">Nombre</td>
+                                                    <td th:text="${directorio.telefonoDirectorio}">src/img/isep_01.jpg</td>
+                                                    <td th:text="${directorio.emailDirectorio}">Las mejores instalaciones</td>
+                                                    <td th:text="${directorio.areaInstitucionalDirectorio.tituloAreaInstitucional}">Area</td>
+                                                    <td th:text="${directorio.puestoInstitucional}">Area</td>
                                                     <td class="td-actions">
                                                         <button type="button" rel="tooltip" title="Editar Imagen"
                                                             class="btn btn-link btn-sm btn-outline-info">
@@ -149,59 +157,6 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td>2</td>
-                                                    <td><img src="/assets/img/isep/isep_img_2.jpg" width="100"
-                                                            height="100" class="rounded-circle"></td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Contamos con instalaciones de primer nivel</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td><img src="/assets/img/isep/isep_img_3.jpg" width="100"
-                                                            height="100" class="rounded-circle"></td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Contamos con instalaciones de primer nivel</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td><img src="/assets/img/isep/isep_img_4.jpg" width="100"
-                                                            height="100" class="rounded-circle"></td>
-                                                    <td>src/img/isep_01.jpg</td>
-                                                    <td>Las mejores instalaciones</td>
-                                                    <td>Contamos con instalaciones de primer nivel</td>
-                                                    <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
-                                                            class="btn btn-link btn-sm btn-outline-info">
-                                                            <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <button type="button" rel="tooltip" title="Eliminar Imagen"
-                                                            class="btn btn-outline-danger btn-link btn-sm">
-                                                            <i class="material-icons text-danger">close</i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -223,53 +178,66 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Registro de Contacto</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true"></span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form>
+                                <form th:action="@{/admin/directorio/registro}" th:object="${directorio}"
+                                    method="POST">
                                     <div>
                                         <label for="inputContactoNombre">Nombre</label>
-                                        <input type="text" class="form-control" id="inputContactoNombre">
+                                        <input type="hidden" th:field="${directorio.idDirectorio}">
+                                        <input type="text" class="form-control"
+                                            th:field="${directorio.nombreDirectorio}" id="inputContactoNombre">
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="inputContactoApellidoPaterno">Apellido Paterno</label>
-                                            <input type="text" class="form-control" id="inputContactoApellidoPaterno">
+                                            <input type="text" class="form-control"
+                                                th:field="${directorio.apellidoPaterno}"
+                                                id="inputContactoApellidoPaterno">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputContactoApellidoMaterno">Apellido Materno</label>
-                                            <input type="text" class="form-control" id="inputContactoApellidoMaterno">
+                                            <input type="text" class="form-control"
+                                                th:field="${directorio.apellidoMaterno}"
+                                                id="inputContactoApellidoMaterno">
                                         </div>
                                     </div>
                                     <div>
                                         <label for="inputContactoTelefono">Teléfono</label>
-                                        <input type="text" class="form-control" id="inputContactoTelefono">
+                                        <input type="text" class="form-control"
+                                            th:field="${directorio.telefonoDirectorio}" id="inputContactoTelefono">
                                     </div>
                                     <div>
                                         <label for="inputContactoEmail">Correo Electrónico</label>
-                                        <input type="email" class="form-control" id="inputContactoEmail">
+                                        <input type="email" class="form-control"
+                                            th:field="${directorio.emailDirectorio}" id="inputContactoEmail">
                                     </div>
                                     <div>
                                         <label for="selectAreaInstitucional">Selecciona un área institucional</label>
-                                        <select class="form-control" id="selectAreaInstitucional">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                        <select class="form-control" th:field="${directorio.areaInstitucionalDirectorio.idAreaInstitucional}">
+                                            <option th:each="area: ${listaAreas}"
+                                                th:text="${area.tituloAreaInstitucional}"
+                                                th:value="${area.idAreaInstitucional}">1</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label for="inputContactoPuesto">Puesto Institucional</label>
-                                        <input type="text" class="form-control" id="inputContactoPuesto">
+                                        <input type="text" class="form-control"
+                                            th:field="${directorio.puestoInstitucional}" id="inputContactoPuesto">
                                     </div>
-
+                                    <div>
+                                        <label for="inputContactoPuesto">Extension</label>
+                                        <input type="text" class="form-control"
+                                            th:field="${directorio.extensionDirectorio}" id="inputContactoPuesto">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Guardar Regisro</button>
                                 </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-primary">Guardar Regisro</button>
+                                
                             </div>
                         </div>
                     </div>

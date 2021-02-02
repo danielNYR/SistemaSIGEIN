@@ -20,35 +20,47 @@
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
-                <a href="indexadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opciones de la barra lateral - Página de Inicio-->
+                <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
-                <a href="ofeducativa.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/oferta_educativa}"
+                    class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a href="usuariosadm.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                <a href="admconocenos.html"
-                    class="list-group-item list-group-item-action bg-primary text-white border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/admin/conocenos}" class="list-group-item list-group-item-action bg-primary text-white">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                <a href="adminvalores.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                <a href="admcostos.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Costos y Promociones-->
+                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a href="admnoticias.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                <a href="admdirectorio.html" class="list-group-item list-group-item-action bg-white border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/admin/directorio}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
-                <a href="admaspirantes.html" class="list-group-item list-group-item-action bg-white border-0">
+                <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">cast_for_education</i>
                     Aspirantes</a>
+                <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">book_online</i>
+                    Modalidad Educativa</a>
+                <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -67,7 +79,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" th:href="@{/admin/}">Inicio <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link"><i class="material-icons align-top mr-2">notifications</i></a>
@@ -146,91 +158,77 @@
                     <div class="col-md-12 mt-5">
                         <div class="card">
                             <div class="card-header card-downgrade-info">
-                                Visión
+                                Misión y Visión Institucional
                             </div>
                             <!--Inicio de las solicitudes de imagenes y redacción de textos.-->
-                            <div class="row">
-                                <div class="col-md-4 mt-3 ml-5 mb-3">
-                                    <!--Card del input de archivo-->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Imagen Misión</h5>
-                                            <label for="exampleInputFile" class="h6">Selecciona una imagen</label>
-                                            <input type="file" class="form-control-file" id="infiObjetivoCarrera"
-                                                aria-describedby="fileHelp">
-                                            <small id="fileHelp" class="form-text text-muted">
-                                                Selecciona una imagen que cumpla con las características</small>
-                                        </div>
+                            <form th:action="@{/admin/conocenos/registro}" th:object="${informacion}" method="POST"
+                                enctype="multipart/form-data">
+                                <!--Modificar el formulario a partir de aquí hacerlo de dos columnas, solo estarán vision
+                                Misión y tendrá 3 botones en la parte de abajo, ver, modificar (este habilita cambios solamente)
+                                y cambiará su texto el botón modificar a guardar cuando esté habilitado-->
+                                <div class="form-row">
+                                    <div class="form-group col-md-4 ml-5 mt-5">
+                                        <input type="hidden" th:field="${informacion.idInformacion}">
+                                        <!--Diseño de input text area-->
+                                        <!--Input de adjunto Imagen de Perfil-->
+                                        <label for="exampleInputFile">Selecciona una imagen para la Misión</label>
+                                        <input type="file" class="form-control-file" name="fileAdjuntoMision"
+                                            aria-describedby="fileHelp">
+                                        <small id="fileHelp" class="form-text text-muted"
+                                            th:text="'Archivo actual' + ${informacion.adjuntoMision}">
+                                            Selecciona una imagen no mayor a 10MB</small>
+                                        <small id="fileHelp" class="form-text text-muted">
+                                            Selecciona una imagen no mayor a 10MB</small>
+                                    </div>
+                                    <div class="form-group col-md-7 ml-3">
+                                        <label for="inputAddress">Misión Institucional</label>
+                                        <textarea class="textarea form-control"
+                                            th:field="${informacion.informacionMision}" maxlength="255"
+                                            placeholder="Ingresa la misión que tiene tu institución." rows="4">
+                                        </textarea>
                                     </div>
                                 </div>
-                                <div class="col-md-7 mt-3 mb-3">
-                                    <!--Card del texto-->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p class="card-text">With supporting text below as a natural lead-in to
-                                                additional content.</p>
-                                            <div class="">
-                                                <button type="button" rel="tooltip" title="Editar Imagen"
-                                                    class="btn btn-link btn-sm btn-outline-info">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Guardar"
-                                                    class="btn btn-link btn-sm btn-outline-success">
-                                                    <i class="material-icons">save</i>
-                                                </button>
-                                            </div>
-                                        </div>
+                                <!--Apartado de visión-->
+                                <div class="form-row">
+                                    <div class="form-group col-md-4 ml-5 mt-5">
+                                        <!--Diseño de input text area-->
+                                        <!--Input de adjunto Imagen de Perfil-->
+                                        <label for="exampleInputFile">Selecciona una imagen para la Visión</label>
+                                        <input type="file" class="form-control-file" name="fileAdjuntoVision"
+                                            aria-describedby="fileHelp">
+                                        <small id="fileHelp" class="form-text text-muted"
+                                            th:text="'Archivo actual' + ${informacion.adjuntoVision}">
+                                            Selecciona una imagen no mayor a 10MB</small>
+                                        <small id="fileHelp" class="form-text text-muted">
+                                            Selecciona una imagen no mayor a 10MB</small>
+                                    </div>
+                                    <div class="form-group col-md-7 ml-3">
+                                        <label for="inputAddress">Visión Institucional</label>
+                                        <textarea class="textarea form-control"
+                                            th:field="${informacion.informacionVision}" maxlength="255"
+                                            placeholder="Ingresa la Visión que tiene tu institución." rows="4">
+                                        </textarea>
+
                                     </div>
                                 </div>
-                            </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-9 ml-5 mt-5">
+                                        <!--Diseño de input text area-->
+                                        <!--Input de adjunto Imagen de Perfil-->
+                                        <input type="hidden">
+                                    </div>
+                                    <div class="form-group col-md-2 ml-3">
+                                        <button type="submit" class="btn btn-primary form-control">
+                                            <i class="material-icons text-white align-top">edit</i>Guardar
+                                            Cambios</button>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--Final del form-->
                         </div>
                     </div>
                 </div>
                 <!--Inicio del container fluid-->
-                <div class="row mt-3 mb-3">
-                    <div class="col-md-12 mt-5">
-                        <div class="card">
-                            <div class="card-header card-downgrade-primary">
-                                Misión
-                            </div>
-                            <!--Inicio de las solicitudes de imagenes y redacción de textos.-->
-                            <div class="row">
-                                <div class="col-md-4 mt-3 ml-5 mb-3">
-                                    <!--Card del input de archivo-->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title">Imagen Misión</h5>
-                                            <label for="exampleInputFile" class="h6">Selecciona una imagen</label>
-                                            <input type="file" class="form-control-file" id="infiObjetivoCarrera"
-                                                aria-describedby="fileHelp">
-                                            <small id="fileHelp" class="form-text text-muted">
-                                                Selecciona una imagen que cumpla con las características</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-7 mt-3 mb-3">
-                                    <!--Card del texto-->
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <p class="card-text">With supporting text below as a natural lead-in to
-                                                additional content.</p>
-                                            <div class="">
-                                                <button type="button" rel="tooltip" title="Editar Imagen"
-                                                    class="btn btn-link btn-sm btn-outline-info">
-                                                    <i class="material-icons">edit</i>
-                                                </button>
-                                                <button type="button" rel="tooltip" title="Guardar"
-                                                    class="btn btn-link btn-sm btn-outline-success">
-                                                    <i class="material-icons">save</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!--Fin del contenedor de la tabla-->
         </div>

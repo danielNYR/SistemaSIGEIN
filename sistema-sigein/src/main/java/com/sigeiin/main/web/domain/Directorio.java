@@ -33,9 +33,31 @@ public class Directorio implements Serializable{
     @Column(name = "idDirectorio")
     private Long idDirectorio;
     
+    @Column(name ="Nombre")
+    private String nombreDirectorio;
+    
+    @Column(name="Apellido")
+    private String apellidoPaterno;
+    
+    @Column(name="ApellidoMaterno")
+    private String apellidoMaterno;
+    
+    @Column(name="Telefono")
+    private String telefonoDirectorio;
+    
+    @Column(name="email")
+    private String emailDirectorio;
+    
+    @Column(name="PuestoInstitucional")
+    private String puestoInstitucional;
+    
+    @Column(name ="horarioAtencion") 
+    private String extensionDirectorio;
+    
+    
     //Relación con la base de datos; se realiza la notación:
-    @ManyToOne(targetEntity = OfertaEducativa.class)
-    @JoinColumn (name="idOfertaEducativa") //Puede que esto sea necesario o no
-    OfertaEducativa ofertaEducativaDirectorio;
+    @ManyToOne(targetEntity = AreaInstitucional.class)
+    @JoinColumn (name="idAreaInstitucional") //Puede que esto sea necesario o no
+    AreaInstitucional areaInstitucionalDirectorio;
     
 }

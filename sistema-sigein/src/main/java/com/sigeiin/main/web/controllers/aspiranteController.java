@@ -5,9 +5,10 @@
  */
 package com.sigeiin.main.web.controllers;
 
-import com.sigeiin.main.web.dao.AspiranteDaoImplementation;
 import com.sigeiin.main.web.dao.iAspiranteDao;
 import com.sigeiin.main.web.dao.iOfertaEducativaDao;
+import com.sigeiin.main.web.repository.AspiranteDaoImplementation;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

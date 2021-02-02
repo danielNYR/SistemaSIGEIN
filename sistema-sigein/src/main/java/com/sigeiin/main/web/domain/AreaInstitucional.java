@@ -37,6 +37,12 @@ public class AreaInstitucional implements Serializable{
     @OneToMany(mappedBy="areaInstitucionalNoticia")
     List<Noticia>noticasAreaInstitucional;
     
+    @OneToMany(mappedBy = "areaInstitucionalDirectorio")
+    private List<Directorio> directorio;
+    
+    @OneToMany(mappedBy="areaInstitucionalPromo")
+    private List<Promocion> promociones;
+    
     //Columnas de la tabla area institucional
     @Column(name ="TituloAreaInstitucional")
     private String tituloAreaInstitucional;

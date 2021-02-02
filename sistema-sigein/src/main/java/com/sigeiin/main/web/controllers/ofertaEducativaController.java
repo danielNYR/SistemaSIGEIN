@@ -5,9 +5,10 @@
  */
 package com.sigeiin.main.web.controllers;
 
-import com.sigeiin.main.web.dao.ModalidadEducativaDaoImplementation;
 import com.sigeiin.main.web.dao.iOfertaEducativaDao;
 import com.sigeiin.main.web.domain.OfertaEducativa;
+import com.sigeiin.main.web.repository.ModalidadEducativaDaoImplementation;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -43,6 +44,12 @@ public class ofertaEducativaController {
     @Autowired
     @Qualifier("ModalidadEducativaDaoImplementationJPA")
     private ModalidadEducativaDaoImplementation serviceModalidad;
+    //Variables para guardar los adjuntos
+    String adjunto_respaldo_planEstudios = ""; //archivo 1
+    String adjunto_respaldo_reticula = ""; //archivo 2
+    String adjunto_respaldo_imgOferta = "";//archivo 3
+    String adjunto_respaldo_acercaDe = "";//archivo 4
+    String adjunto_respaldo_acercaDeOtro="";//archivo 5
 
     @GetMapping({"/admin/ofeducativa", "/admin/oferta", "/admin/oferta_educativa"})
     public String gestionNoticia(Model model) {
@@ -79,7 +86,7 @@ public class ofertaEducativaController {
             Path rootPath = Paths.get("uploads").resolve(uniqueFileNameAdjuntoPE);
             rootAbsolutPath = rootPath.toAbsolutePath();
         } else {//Apartado en que se elimina el archivo
-            if(oferta.getIdOfertaEducativa()>0){
+            if(oferta.getIdOfertaEducativa()!= null){ //Se cambia por != null
                 Path pathObtenido = Paths.get("uploads").resolve(oferta.getPlanEstudiosOfertaEducativa()).toAbsolutePath();
                 deleteFile(pathObtenido);
             }
@@ -89,7 +96,7 @@ public class ofertaEducativaController {
             Path rootPath2 = Paths.get("uploads").resolve(uniqueFileNameReticula);
             rootAbsolutePathRE = rootPath2.toAbsolutePath();
         } else {//Apartado en que se elimina el archivo
-            if(oferta.getIdOfertaEducativa()>0){
+            if(oferta.getIdOfertaEducativa()!= null){
             Path pathObtenido = Paths.get("uploads").resolve(oferta.getReticulaOfertaEducativa()).toAbsolutePath();
             deleteFile(pathObtenido);
             }
@@ -99,7 +106,7 @@ public class ofertaEducativaController {
             Path rootPath3 = Paths.get("uploads").resolve(uniqueFileNameOferta1);
             rootAbsolutePathR1 = rootPath3.toAbsolutePath();
         } else {//Apartado en que se elimina el archivo
-            if(oferta.getIdOfertaEducativa()>0){
+            if(oferta.getIdOfertaEducativa()!= null){
             Path pathObtenido = Paths.get("uploads").resolve(oferta.getAdjuntoOfertaEducativa()).toAbsolutePath();
             deleteFile(pathObtenido);
             }
@@ -110,7 +117,7 @@ public class ofertaEducativaController {
             Path rootPath4 = Paths.get("uploads").resolve(uniqueFileNameOferta2);
             rootAbsolutePathR2 = rootPath4.toAbsolutePath();
         } else {//Apartado en que se elimina el archivo
-            if(oferta.getIdOfertaEducativa()>0){
+            if(oferta.getIdOfertaEducativa()!= null){
             Path pathObtenido = Paths.get("uploads").resolve(oferta.getAdjuntoAcercaOfertaEducativa()).toAbsolutePath();
             deleteFile(pathObtenido);
             }
@@ -121,7 +128,7 @@ public class ofertaEducativaController {
             rootAbsolutePathR3 = rootPath5.toAbsolutePath();
         } else {
             //Apartado en que se elimina el archivo
-            if(oferta.getIdOfertaEducativa()>0){
+            if(oferta.getIdOfertaEducativa()!= null){
             Path pathObtenido = Paths.get("uploads").resolve(oferta.getAdjuntoObjetivoOfertaEducativa()).toAbsolutePath();
             deleteFile(pathObtenido);
             }
@@ -129,24 +136,39 @@ public class ofertaEducativaController {
         try {
 
             if (!adjuntoPE.isEmpty()) {
+            	//Plan de estudios
                 Files.copy(adjuntoPE.getInputStream(), rootAbsolutPath);
                 oferta.setPlanEstudiosOfertaEducativa(uniqueFileNameAdjuntoPE);
+            }else {
+            	oferta.setPlanEstudiosOfertaEducativa(adjunto_respaldo_planEstudios);
             }
             if (!adjuntoReticula.isEmpty()) {
+            	//Reticula Oferta Educativa
                 Files.copy(adjuntoReticula.getInputStream(), rootAbsolutePathRE);
                 oferta.setReticulaOfertaEducativa(uniqueFileNameReticula);
+            }else {
+            	oferta.setReticulaOfertaEducativa(adjunto_respaldo_reticula);
             }
             if (!adjuntoOferta1.isEmpty()) {
+            	//Adjunto Oferta Educativa
                 Files.copy(adjuntoOferta1.getInputStream(), rootAbsolutePathR1);
                 oferta.setAdjuntoOfertaEducativa(uniqueFileNameOferta1);
+            }else {
+            	oferta.setAdjuntoOfertaEducativa(adjunto_respaldo_imgOferta);
             }
             if (!adjuntoOferta2.isEmpty()) {
+            	//Imagen Acerca de 1
                 Files.copy(adjuntoOferta2.getInputStream(), rootAbsolutePathR2);
                 oferta.setAdjuntoAcercaOfertaEducativa(uniqueFileNameOferta2);
+            }else {
+            	oferta.setAdjuntoAcercaOfertaEducativa(adjunto_respaldo_acercaDe);
             }
             if (!adjuntoOferta3.isEmpty()) {
+            	//Imagen Acerca de 2
                 Files.copy(adjuntoOferta3.getInputStream(), rootAbsolutePathR3);
                 oferta.setAdjuntoObjetivoOfertaEducativa(uniqueFileNameOferta3);
+            }else {
+            	oferta.setAdjuntoObjetivoOfertaEducativa(adjunto_respaldo_acercaDeOtro);
             }
 
         } catch (IOException ex) {
@@ -179,10 +201,19 @@ public class ofertaEducativaController {
         OfertaEducativa oferta = null;
         if (id > 0) {
             oferta = service_OfertaEducativa.encontrarOferta(id);
+            adjunto_respaldo_acercaDe = oferta.getAcercaDeOfertaEducativa();
+            adjunto_respaldo_acercaDeOtro = oferta.getAdjuntoAcercaOfertaEducativa();
+            adjunto_respaldo_imgOferta = oferta.getAdjuntoOfertaEducativa();
+            adjunto_respaldo_planEstudios = oferta.getPlanEstudiosOfertaEducativa();
+            adjunto_respaldo_reticula = oferta.getReticulaOfertaEducativa();
+            
         } else {
             return "redirect:/error/";
         }
         model.addAttribute("oferta", oferta);
+        model.addAttribute("listaModalidad", serviceModalidad.listarOfertas());
+        model.addAttribute("listaOferta", service_OfertaEducativa.listarOfertas()); //Con esto hacemos un llamado a todos los datos en la base de datos que se obtuvieron
+        //log.info("El usuario ha entrado al controlador aspirante");
         return "ofeducativa";
     }
 

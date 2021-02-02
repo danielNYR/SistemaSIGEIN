@@ -60,7 +60,7 @@
                 <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">book_online</i>
                     Modalidad Educativa</a>
-                    <a th:href="@{/admin/area_institucional}"
+                <a th:href="@{/admin/area_institucional}"
                     class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">pages</i>
                     Área Institucional</a>
@@ -202,7 +202,6 @@
                                         </div>
                                     </div>
                                     <!--Final del row que contiene los card-->
-
                                 </div>
 
                             </div>
@@ -254,45 +253,41 @@
                                             Selecciona una imagen de tipo JPG o PNG que ejemplifique la promoción
                                             publicada</small>
                                     </div>
-                                    <div>
-                                        <label for="selectOfertas">Selecciona las ofertas educativas
-                                            participantes</label>
-                                        <select name="select_ofertasParticipantes" id="selectOfertas"
-                                            th:field="${promocion.ofertasEducativas}" multiple="multiple"
-                                            class="form-control">
-                                            <option th:each="oferta: ${listaOferta}"
-                                                th:text="${oferta.TituloOfertaEducativa}"
-                                                th:value="${oferta.idOfertaEducativa}"></option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputFechaInicialPromocion">Fecha Inicial</label>
-                                            <input type="date" class="form-control" th:field="${promocion.fechaInicio}"
-                                                id="inputFechaInicialPromocion">
-                                        </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="inputFechaFinalPromocion">Fecha Final</label>
-                                            <input type="date" class="form-control" th:field="${promocion.fechaFinal}"
-                                                id="inputFechaFinalPromocion">
-                                        </div>
-                                    </div>
-                                    <input type="hidden" th:field="${promocion.idPromocion}">
-                                    <div class="form-row">
-                                        <button type="submit" class="btn btn-primary form-control">Guardar
-                                            Registros</button>
-                                    </div>
-                                </form>
+                                    <label for="selectOfertas">Selecciona el área que expide la promoción</label>
+                                    <select name="select_ofertasParticipantes" id="selectOfertas"
+                                        th:field="${promocion.areaInstitucionalPromo.idAreaInstitucional}"
+                                        class="form-control">
+                                        <option th:each="area: ${listaAreas}" th:text="${area.tituloAreaInstitucional}"
+                                            th:value="${area.idAreaInstitucional}"></option>
+                                    </select>
                             </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputFechaInicialPromocion">Fecha Inicial</label>
+                                    <input type="date" class="form-control" th:field="${promocion.fechaInicio}"
+                                        id="inputFechaInicialPromocion">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputFechaFinalPromocion">Fecha Final</label>
+                                    <input type="date" class="form-control" th:field="${promocion.fechaFinal}"
+                                        id="inputFechaFinalPromocion">
+                                </div>
+                            </div>
+                            <input type="hidden" th:field="${promocion.idPromocion}">
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary form-control">Guardar
+                                    Registros</button>
+                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <!--Final del modal con entrada de datos-->
             </div>
-            <!--Final de container fluid-->
+            <!--Final del modal con entrada de datos-->
         </div>
-        <!-- /#page-content-wrapper -->
+        <!--Final de container fluid-->
+    </div>
+    <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
     <!--Librerías de Javascript th:href="@{/css/bootstrap.min.css}"-->

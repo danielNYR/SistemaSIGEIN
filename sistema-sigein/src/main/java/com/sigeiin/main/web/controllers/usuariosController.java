@@ -5,9 +5,10 @@
  */
 package com.sigeiin.main.web.controllers;
 
-import com.sigeiin.main.web.dao.AreaInstitucionalDaoImplementation;
-import com.sigeiin.main.web.dao.UsuarioDaoImplementation;
 import com.sigeiin.main.web.domain.Usuario;
+import com.sigeiin.main.web.repository.AreaInstitucionalDaoImplementation;
+import com.sigeiin.main.web.repository.UsuarioDaoImplementation;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

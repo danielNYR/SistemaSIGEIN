@@ -20,7 +20,7 @@
         <div class="bg-white border-right" id="sidebar-wrapper">
             <div class="sidebar-heading">PANEL DE NAVEGACIÓN</div>
             <div class="list-group list-group-flush">
-                <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-light">
+                <a th:href="@{/admin/}" class="list-group-item list-group-item-action bg-white ">
                     <i class="material-icons align-top mr-2">dashboard</i>
                     Página de Inicio</a>
                 <a th:href="@{/admin/oferta_educativa}"
@@ -28,22 +28,26 @@
                     <i class="material-icons align-top mr-2">school</i>
                     Oferta Educativa</a>
                 <!--Opción Oferta Educativa-->
-                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-light border-0">
+                <a th:href="@{/admin/usuarios}" class="list-group-item list-group-item-action bg-white  border-0">
                     <i class="material-icons align-top mr-2">groups</i>
                     Usuarios</a>
-                <a href="admconocenos.html" class="list-group-item list-group-item-action bg-light border-0">
+                <!--Opción Conócenos-->
+                <a th:href="@{/admin/conocenos}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">library_books</i>
                     Conócenos</a>
-                <a href="adminvalores.html" class="list-group-item list-group-item-action bg-light border-0">
+                <!--Opción valores institucionales-->
+                <a th:href="@{/admin/valores}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">account_balance</i>
                     Valores Institucionales</a>
-                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-light border-0">
+                <!--Opción Costos y Promociones-->
+                <a th:href="@{/admin/promociones}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">payments</i>
                     Costos y Promociones</a>
-                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-light border-0">
+                <a th:href="@{/admin/noticias}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">campaign</i>
                     Noticias</a>
-                <a href="admdirectorio.html" class="list-group-item list-group-item-action bg-light border-0">
+                <!--Opción Directorio Institucional-->
+                <a th:href="@{/admin/directorio}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">contact_page</i>
                     Directorio Institucional</a>
                 <a th:href="@{/admin/aspirante}" class="list-group-item list-group-item-action bg-white border-0">
@@ -52,6 +56,10 @@
                 <a th:href="@{/admin/modalidad}" class="list-group-item list-group-item-action bg-white border-0">
                     <i class="material-icons align-top mr-2">book_online</i>
                     Modalidad Educativa</a>
+                <a th:href="@{/admin/area_institucional}"
+                    class="list-group-item list-group-item-action bg-white border-0">
+                    <i class="material-icons align-top mr-2">pages</i>
+                    Área Institucional</a>
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -242,11 +250,13 @@
                                                             Plan de Estudios</a></td>
                                                     <td></td>
                                                     <td class="td-actions">
-                                                        <button type="button" rel="tooltip" title="Editar Imagen"
+                                                        <a th:href="@{/admin/oferta_educativa/editar/}+${oferta.idOfertaEducativa}">
+                                                            <button type="button" rel="tooltip" title="Editar Imagen"
                                                             class="btn btn-link btn-sm btn-outline-info">
                                                             <i class="material-icons">edit</i>
-                                                        </button>
-                                                        <a th:href="@{/admin/oferta_educativa/eliminar/}+${oferta.idOfertaEducativa}"><button type="submit" rel="tooltip" title="Eliminar Imagen"
+                                                        </button></a>
+                                                        <a th:href="@{/admin/oferta_educativa/eliminar/}+${oferta.idOfertaEducativa}">
+                                                            <button type="submit" rel="tooltip" title="Eliminar Imagen"
                                                             class="btn btn-outline-danger btn-link btn-sm"  >
                                                             <i class="material-icons text-danger">close</i>
                                                         </button></a>

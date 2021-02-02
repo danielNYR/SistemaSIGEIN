@@ -13,6 +13,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.Data;
@@ -33,11 +34,10 @@ public class OfertaEducativa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idOfertaEducativa;
     
+    //No se hará el many to many
     @OneToMany(mappedBy = "ofertaEducativa")
     private List<Aspirante> aspirantes;
     
-    @OneToMany(mappedBy = "ofertaEducativaDirectorio")
-    private List<Directorio> directorio;
     
     //Componentes adicionales de la tabla: 
     @Column(name = "TituloOfertaEducativa")
